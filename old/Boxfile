@@ -1,0 +1,15 @@
+web1:
+  name: timewasted
+  document_root: website
+  php_version: 5.3.8
+  php_extensions:
+    - mysql
+    - mysqli
+    - gd
+    - eaccelerator
+    - mcrypt
+    - mbstring
+     
+db1: #component type & number 
+  name: shows
+  type: mysql

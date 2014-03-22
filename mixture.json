@@ -1,0 +1,23 @@
+{
+  "convertHtmlOutput": null,
+  "customRubyPath": null,
+  "debug": false,
+  "domain": null,
+  "followLeader": false,
+  "lintScripts": false,
+  "modelSource": null,
+  "preprocessorLocations": "/",
+  "preprocessorScriptOutput": "/scripts/",
+  "preprocessorStyleOutput": "/",
+  "projectDescription": "How much time you’ve wasted",
+  "projectName": "TimeWasted",
+  "publishedId": null,
+  "serverHostname": null,
+  "serverPort": 2000,
+  "simpleModePartnerServer": null,
+  "templateDefaultLayout": "layout",
+  "templateDefaultPage": "index",
+  "templateDirectory": "templates",
+  "type": "simple",
+  "useCompass": true
+}

@@ -1,0 +1,1566 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+
+/* =============================================================================
+   HTML5 element display
+   ========================================================================== */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+audio[controls], canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+
+
+/* =============================================================================
+   Base
+   ========================================================================== */
+
+/*
+ * 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
+ *    http://clagnut.com/blog/348/#c790
+ * 2. Force vertical scrollbar in non-IE
+ * 3. Remove Android and iOS tap highlight color to prevent entire container being highlighted
+ *    www.yuiblog.com/blog/2010/10/01/quick-tip-customizing-the-mobile-safari-tap-highlight-color/
+ * 4. Prevent iOS text size adjust on device orientation change, without disabling user zoom
+ *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
+ */
+
+html { font-size: 100%; overflow-y: scroll; -webkit-overflow-scrolling: touch; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #171e24;}
+
+body { margin: 0; font-size: 13px; line-height: 1.231;}
+
+body, button, input, select, textarea { font-family: sans-serif; color: #ffe7ad; }
+
+.noscript { 
+position: fixed;
+z-index: 100;
+text-align: center;
+width: 100%;
+height: 40px;
+line-height:40px;
+font-size: 1.5em;
+top: -3%;
+color: #fff;
+background: rgb(169,3,41);
+background: -moz-linear-gradient(top,  rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(169,3,41,1)), color-stop(44%,rgba(143,2,34,1)), color-stop(100%,rgba(109,0,25,1)));
+background: -webkit-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+background: -o-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+background: -ms-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+background: linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
+}
+
+::-moz-selection { background: #ffe7ad; color: #171e24; text-shadow: none; }
+::selection { background: #ffe7ad; color: #171e24; text-shadow: none; }
+
+
+/* =============================================================================
+   Links
+   ========================================================================== */
+
+
+
+a, h1 a:hover { color: #f7ad35; text-decoration: none; }
+a:visited { color: #f7ad35; }
+a:focus { outline: thin dotted; }
+h1 a, h1 a:visited { color: #ffe7ad }
+
+/* Improve readability when focused and hovered in all browsers: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active { outline: 0; color: #ffe7ad; }
+
+
+/* =============================================================================
+   Typography
+   ========================================================================== */
+
+abbr[title] { border-bottom: 1px dotted; }
+
+b, strong { font-weight: bold; }
+
+blockquote { margin: 1em 40px; }
+
+dfn { font-style: italic; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+/* Redeclare monospace font family: en.wikipedia.org/wiki/User:Davidgothberg/Test59 */
+pre, code, kbd, samp { font-family: monospace, monospace; _font-family: 'courier new', monospace; font-size: 1em; }
+
+/* Improve readability of pre-formatted text in all browsers */
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+
+q { quotes: none; }
+q:before, q:after { content: ""; content: none; }
+
+small { font-size: 85%; }
+
+/* Position subscript and superscript content without affecting line-height: gist.github.com/413930 */
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+
+/* =============================================================================
+   Lists
+   ========================================================================== */
+
+ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
+dd { margin: 0 0 0 40px; }
+nav ul, nav ol { list-style: none; margin: 0; padding: 0; }
+
+
+/* =============================================================================
+   Embedded content
+   ========================================================================== */
+
+/*
+ * Improve image quality when scaled in IE7
+ * code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
+ */
+
+img { border: 0; -ms-interpolation-mode: bicubic; }
+
+/*
+ * Correct overflow displayed oddly in IE9 
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+
+/* =============================================================================
+   Figures
+   ========================================================================== */
+
+figure { margin: 0; }
+
+
+/* =============================================================================
+   Forms
+   ========================================================================== */
+
+form { margin: 0; }
+fieldset { border: 0; margin: 0; padding: 0; }
+
+/* 
+ * 1. Correct color not inheriting in IE6/7/8/9 
+ * 2. Correct alignment displayed oddly in IE6/7 
+ */
+
+legend { border: 0; *margin-left: -7px; padding: 0; }
+
+/* Indicate that 'label' will shift focus to the associated form element */
+label { cursor: pointer; }
+
+/*
+ * 1. Correct font-size not inheriting in all browsers
+ * 2. Remove margins in FF3/4 S5 Chrome
+ * 3. Define consistent vertical alignment display in all browsers
+ */
+
+button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: baseline; *vertical-align: middle; }
+
+/*
+ * 1. Define line-height as normal to match FF3/4 (set using !important in the UA stylesheet)
+ * 2. Correct inner spacing displayed oddly in IE6/7
+ */
+
+button, input { line-height: normal; *overflow: visible; }
+
+/*
+ * 1. Display hand cursor for clickable form elements
+ * 2. Allow styling of clickable form elements in iOS
+ */
+
+button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; }
+
+/*
+ * Consistent box sizing and appearance
+ */
+
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; }
+input[type="search"] { -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
+
+/* 
+ * Remove inner padding and border in FF3/4
+ * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ 
+ */
+
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+
+/* Remove default vertical scrollbar in IE6/7/8/9 */
+textarea { overflow: auto; vertical-align: top; }
+
+/* Colors for form validity */
+input:valid, textarea:valid {  }
+input:invalid, textarea:invalid { background-color: #f0dddd; }
+
+
+/* =============================================================================
+   Tables
+   ========================================================================== */
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+
+/* =============================================================================
+   Primary styles
+   Author: Alex Cican (http://sicanstudios.com)
+   ========================================================================== */
+
+html, body { /* not 100% because of bottom bar on Safari */
+height: 94.5%; /* first was 94.5 */
+}
+
+#container_home, #container, #container_result { /* center everything */
+margin: 0 auto;
+text-align: center;
+}
+
+header, footer { /* style the header and footer, fixed height */
+height: 100px;
+position: fixed;
+width: 100%;
+top: 0;
+background-color: #171e24;
+}
+
+#main { /* move content down */
+margin: 100px 0;
+}
+
+.social_buttons {
+display: none;
+}
+
+#loading {
+text-align:center;
+display: block;
+}
+
+#wrapper { /* wrapper for the scrolling box; set fixed height */
+position: relative;
+z-index: 1;
+height: 215px;
+-webkit-overflow-scrolling: touch;
+}
+
+footer { /* positions the footer fixed on bottom */
+top: auto;
+z-index: 1;
+bottom: -61px;
+}
+
+.footer_info {
+display: none;
+}
+
+#container_home footer {
+bottom: 10px;
+}
+
+header h1, header h2 {
+display: none;
+}
+
+#container_home header h1, #container_result header h1 {
+display: block;
+}
+
+h1 { /* styles the logo */
+font-family: 'Open Sans';
+font-weight: normal;
+letter-spacing: -0.05em;
+font-size: 3em;
+margin: 0.3em 0 -0.5em 0;
+}
+
+h1 b { /* styles the second part of title */
+font-weight:bold;
+}
+
+h3, p, .delete, #add_shows span, #submit_button, #submit_button_ok, #loading { /* change font family of h2, h3, p */
+font-family: 'Yanone Kaffeesatz';
+font-size: 1.5em;
+letter-spacing: 0.05em;
+font-weight: normal;
+}
+
+p.subtitle, #add_shows span { /* style the subtitle */
+font-family: 'Yanone Kaffeesatz';
+text-transform: uppercase;
+color: #f7ad35;
+}
+
+.add_button { /* style the home button */
+font-family: 'Open Sans';
+background: #111517;
+width: 128px;
+padding: 0 0 5px 2px;
+height: 125px;
+line-height: 125px;
+font-size: 2em;
+font-weight: bold;
+display: block;
+margin: 0 auto;
+}
+
+.add_button:hover { /* on hover change colour and bg */
+background: #f7ad35;
+color: #111517;
+}
+
+ul { /* remove padding and margin and style-type */
+margin: 0;
+padding: 0;
+list-style-type: none;
+text-transform: uppercase;
+}
+
+ul li{ /* add bottom and top padding to the list */
+padding: 0.8em 0 0.5em 1.3em;
+position: relative;
+text-align: left;
+}
+
+.small_list li /* move text to the right - "X" button */
+{
+padding-right: 6em;
+}
+
+.small_list li h3, .small_list li p { /* inline for small list */
+display: inline;
+}
+
+.small_list p { /* change colour of "season" in small list */
+color:#f7ac35;
+padding-left:0.5em;
+font-size:1.2em;
+}
+
+.delete { /* position the "X" link */
+color: #080e12 !important;
+font-size: 2em;
+display: inline-block;
+position: absolute;
+right: 0px;
+top: 15%;
+line-height: 1.2em;
+width: 45px;
+height: 35px;
+text-align: center;
+}
+
+.delete:active {
+outline: none !important;
+}
+
+.delete:hover { /* change colour of "X" link */
+color: #f7ad35 !important;
+}
+
+.delete:before{ /* hides the text before the "X" */
+content: "";
+position: absolute;
+bottom: -30%;
+left: -65%;
+color: #f7ad35;
+font-size: 0.5em;			
+white-space: nowrap;
+}
+
+.delete:hover:before { /* adds "Delete" text before "X" */
+content: "Delete";
+bottom: 2%;
+padding: 0.1em 0.5em;
+filter:	alpha(opacity=100);
+-moz-opacity: 1;
+-khtml-opacity: 1;
+opacity: 1;
+}
+
+#add_shows {
+padding-top: 1em;
+border: none;
+text-align: left;
+width:88%;
+margin-left: 1.3em;
+position: relative;
+}
+
+#add_input, #season_input {
+width: 95%;
+padding: 0.5em 0.7em 0.4em;
+margin-bottom: 0.5em;
+display: block;
+font-size: 1.4em;
+color: #666;
+background: #fff;
+border:none;
+text-transform: uppercase;
+font-family: 'Yanone Kaffeesatz';
+letter-spacing: 0.05em;
+}
+
+#season_input, #season_input:focus{
+width: 53%;
+color: #999;
+padding: 0.4em 0.6em 0.4em;
+margin: 0 0.4em;
+display: inline;
+text-transform: uppercase;
+height: 34px;
+}
+
+#season_input:focus .default {
+display: none;
+}
+
+#season_input:hover {
+cursor: pointer;
+}
+
+#add_input:focus, #season_input:focus {
+color: #000;
+text-transform: uppercase;
+}
+
+#submit_button, #submit_button_ok {
+position: absolute;
+text-transform: uppercase;
+right: -8px;
+bottom: 0;
+padding: 0.35em 0.7em;
+color: #ffe7ad;
+background: #055994;
+border: none;
+z-index: 10;
+}
+
+#submit_button span, #submit_button_ok span {
+font-size: 1.1em;
+color: #ffe7ad;
+}
+
+#submit_button:active, #submit_button_ok:active {
+bottom: -1px;
+}
+
+#calculate_button {
+color: #ffe7ad !important;
+font-size: 1.3em;
+text-transform: uppercase !important;
+z-index: 10;
+background: none;
+border: none;
+background-image: url('../img/button.png');
+background-repeat: no-repeat;
+background-position: 40% 50%;
+display: block;
+line-height: 94px;
+height: 94px;
+width: 94px;
+margin: 5px auto 0;
+font-family: 'Yanone Kaffeesatz';
+letter-spacing: 0.05em;
+}
+
+#calculate_button:hover {
+position: relative;
+top: 1px;
+}
+
+.suggestionsbox {
+width: 103%;
+margin-left: 0.08em;
+display: none;
+z-index: 500;
+position:absolute;
+top: 53px;
+background: #fff;
+color: #000;
+}
+
+.suggestionList {
+list-style-type: none;
+font-family: 'Yanone Kaffeesatz';
+text-transform: uppercase;
+font-size: 1.3em;
+letter-spacing: 0.05em;
+}
+
+.suggestionList li {
+padding: 0.5em 0 0.4em 0.8em;
+border-bottom: solid 1px #ddd;
+-moz-box-shadow: none !important;
+-webkit-box-shadow: none !important;
+box-shadow: none !important;
+}
+
+.suggestionList li:hover {
+cursor: pointer;
+background: #ddd;
+}
+
+.error {
+background: #ff91ad !important;color:#fff !important;
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.5), inset 0 0 10px #661111;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.5), inset 0 0 10px #661111;
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.5), inset 0 0 10px #661111;
+}
+
+.error:focus {
+background: #fff !important;
+color: #000 !important;
+}
+
+.large_list {
+overflow-x: hidden;
+list-style-type: none;
+}
+
+#create_padding_bottom:after { /* add bottom spacing for native scroll only > iOS5 */
+content: "";
+display: block;
+height: 100px;
+}
+
+.large_list li {
+position: relative;
+display: table;
+height: 90px;
+width: 100%;
+padding-right: 5%;
+}
+
+.inner {
+display: table-cell;
+vertical-align: middle;
+width: 100%;
+}
+
+.large_list p {
+color: #f6ab35;
+margin-top: -0.5em;
+list-style-type: none;
+}
+
+.large_list p span {
+font-size: 1.5em;
+font-weight: bold;
+}
+
+.large_list h3 {
+font-size: 3.5em;
+margin-top: -0.45em;
+letter-spacing: 0.02em;
+line-height: 0.9em;
+margin-bottom: 10px;
+  
+}
+
+.large_list .img {
+position: relative;
+display: table-cell;
+vertical-align: middle;
+}
+
+.large_list img {
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+border: solid 4px #ffe7ad;
+}
+
+.large_list li:before, #container_result footer:before { /* adds the + symbols */
+content: "+";
+font-family: 'Yanone Kaffeesatz';
+font-weight: bold;
+font-size: 1.7em;
+text-align: center;
+color: #f6ab35;
+background: #0f1214;
+border-radius: 30px;
+height: 30px;
+width: 28px;
+line-height: 26px;
+margin: -24px auto 0;
+padding-left: 2px;
+display: block;
+position: absolute;
+left: 45.5%;
+z-index: 11;
+}
+
+.large_list li:first-child:before { /* removes the + symbol from first */
+content: "";
+background: transparent;
+}
+
+#container_result footer:before { / adds = symbol to the red container */
+margin: 0 auto;
+content: "=";
+left: 44.2%;
+top: 8px;
+}
+
+#container_result footer {
+height: 100px;
+background: #a71d1d;
+padding-left: 0.7em;
+}
+
+#container_result footer span {
+color: #f6ab35;
+text-transform: uppercase;
+position: absolute;
+top: -2.4em;
+left: 0;
+font-size: 0.25em;
+letter-spacing: 0.05em;
+font-family: 'Yanone Kaffeesatz';
+font-weight: bold;
+}
+
+#container_result footer p {
+font-size: 5em;
+font-family: 'Open Sans';
+font-weight: 600;
+padding-top: 0.2em;
+line-height: 1.9em;
+display: inline;
+position: relative;
+letter-spacing: 0;
+}
+
+#container_result footer p:after {
+content: ":";
+padding: 0 0.1em;
+}
+
+#container_result footer p.last_nr:after {
+content: "";
+}
+
+.result_large {
+display: none;
+}
+
+.menu {
+position: absolute;
+display: block;
+width: 50px;
+height: 50px;
+top: 0.1em;
+right: 0;
+}
+
+.menu .click_button {
+text-indent: -9999px;
+display: block;
+width: 25px;
+height: 20px;
+margin: 15px 0 0 14px;
+background: url('../img/menu_button.png') no-repeat 50% 50%;
+}
+
+.menu>ul {
+display: none;
+position: absolute;
+right: 1em;
+top: 2.3em;
+font-family: 'Yanone Kaffeesatz';
+letter-spacing: 0.08em;
+font-size: 1.125em;
+width: 157px;
+background: #171e24;
+}
+
+.menu:hover>.click_button {
+cursor: pointer;
+background: url('../img/menu_button.png') no-repeat 50% 50% #182526;
+}
+
+.menu:hover>ul {
+display: block;
+}
+
+.menu ul li {
+text-align: right;
+padding: 0.5em 0.5em;
+}
+
+.twitter-share-button {
+vertical-align: -25%;
+}
+
+.popup_outer {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 120%;
+display: none;
+background-color: rgba(0,0,0,0.8);
+padding-top: 30%;
+text-align: left;
+z-index: 101;
+}
+
+.popup {
+text-transform: none;
+text-shadow: 0 -1px 0 #000;
+width: 70%;
+display: block;
+margin: 0 auto;
+padding: 0em 1em 1em;
+background: #333;
+position: relative;
+}
+
+.popup .close {
+position: absolute;
+right: -0.2em;
+top: -2.5em;
+font-size: 0.7em;
+color: #fff;
+text-transform: uppercase;
+}
+
+.popup .close span {
+font-size: 2em;
+vertical-align: -12%;
+}
+
+.popup .close:hover {
+cursor: pointer;
+}
+
+.twitter-follow-button {
+padding-top: 0.5em;
+}
+
+
+/* =============================================================================
+   MOBILE AND LANDSCAPE ORIENTATION
+   ========================================================================== */
+
+
+@media only screen and (max-device-width: 480px) and (orientation: landscape) {
+#wrapper {
+min-height: 100px;
+height: 100%;
+}
+
+#container_home header {
+top: 0;
+position: relative;
+}
+
+footer {
+position: relative;
+padding-top: 0.2em;
+margin-top: -12em;
+}
+
+#container_home footer {
+bottom: 110px;
+margin-top: 0;
+}
+
+#container_result footer {
+padding-left: 0;
+height: 110px;
+}
+
+#add_shows {
+width: 93.5%;
+}
+
+#season_input {
+width: 35%;
+}
+
+.suggestionsbox {
+width: 100%;
+}
+
+#submit_button, #submit_button_ok {
+right: 0px;
+}
+
+#submit_button span:after, #submit_button_ok span:after {
+content: " TV Show";
+}
+
+.large_list li:before, #container_result footer:before {
+left: 47%;
+}
+
+.large_list li {
+padding-right: 3.5%;
+}
+
+.popup_outer {
+height: 9999%;
+padding-top: 15%;
+overflow: hidden;
+}
+
+}
+
+
+/* =============================================================================
+   CSS 3
+   ========================================================================== */
+
+
+header { /* adds bottom border to header */
+-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 #000, 0 10px 30px #171e24;
+-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 #000, 0 10px 30px #171e24;
+box-shadow: 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 #000, 0 10px 30px #171e24;
+z-index: 10;
+}
+
+footer { /* adds bottom border to header */
+-moz-box-shadow: 0 -1px 0 #000, inset 0 1px 0 rgba(255,255,255,0.1), 0 -10px 30px #171e24;
+-webkit-box-shadow: 0 -1px 0 #000, inset 0 1px 0 rgba(255,255,255,0.1), 0 -10px 30px #171e24;
+box-shadow: 0 -1px 0 #000, inset 0 1px 0 rgba(255,255,255,0.1), 0 -10px 30px #171e24;
+}
+
+#container_home header, #container_home footer, .error:focus { /* removes borders of header and footer on home screen */
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+
+h1, h2 { /* adds text shadow to headings */
+text-shadow: 0 -2px 0 #000;
+}
+
+h3, p, a, #submit_button, #submit_button_ok { /* adds smaller text shadow */
+text-shadow: 0 -1px 0 #000;
+}
+
+#add_input, #season_input, .suggestionsbox, .suggestionList li {
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+-webkit-appearance: none;
+-moz-box-shadow: inset 0 -10px 25px rgba(0,0,0,0.1), 0 1px 1px #000;
+-webkit-box-shadow: inset 0 -10px 25px rgba(0,0,0,0.1), 0 1px 1px #000;
+box-shadow: inset 0 -10px 25px rgba(0,0,0,0.1), 0 1px 1px #000;
+}
+
+#add_input::-moz-selection {
+background: #000;
+color: #fff;
+}
+
+#add_input::selection {
+background: #000;
+color: #fff;
+}
+
+.add_button { /* adds inset effect */
+-webkit-border-radius: 100px;
+-moz-border-radius: 100px;
+border-radius: 100px;
+-moz-box-shadow: 0 1px 1px rgba(255,255,255,0.4), inset 0 1px 1px #000;
+-webkit-box-shadow: 0 1px 1px rgba(255,255,255,0.4), inset 0 1px 1px #000;
+box-shadow: 0 1px 1px rgba(255,255,255,0.4), inset 0 1px 1px #000;
+-webkit-appearance: none;
+}
+
+.add_button:hover { /* removes inset effect */
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+
+ul li { /* adds border to each list element */
+-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 #000;
+-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 #000;
+box-shadow: 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 #000;
+}
+
+ul li:last-child, li:last-child>.inner:after, .large_list li:first-child:before
+{
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+
+.delete:before { /* add animation and opacity */
+text-shadow: 0 0 2px #ce3f00;
+filter: alpha(opacity=0);
+-moz-opacity: 0;
+-khtml-opacity: 0;
+opacity: 0;
+-webkit-transition: all 0.4s cubic-bezier(.32, 0, 0, 1);
+-moz-transition: all 0.4s cubic-bezier(.32, 0, 0, 1); 
+-o-transition: all 0.4s cubic-bezier(.32, 0, 0, 1);
+transition: all 0.4s cubic-bezier(.32, 0, 0, 1); 
+}
+
+.delete {
+text-shadow: 0 1px 0 rgba(255,255,255,0.1), 0 -1px 0 #000;
+}
+
+#submit_button, #submit_button_ok {
+-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 12px 2px #000;
+-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px #000;
+box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px #000;
+background-image: linear-gradient(bottom, rgb(5,89,148) 32%, rgb(0,130,217) 100%);
+background-image: -o-linear-gradient(bottom, rgb(5,89,148) 32%, rgb(0,130,217) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(5,89,148) 32%, rgb(0,130,217) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(5,89,148) 32%, rgb(0,130,217) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(5,89,148) 32%, rgb(0,130,217) 100%);
+background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.32, rgb(5,89,148)),color-stop(1, rgb(0,130,217)));
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+-webkit-appearance: none;
+}
+
+#submit_button_ok {
+background: rgb(97,183,0);
+background: -moz-linear-gradient(top,  rgba(97,183,0,1) 0%, rgba(77,132,5,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(97,183,0,1)), color-stop(100%,rgba(77,132,5,1)));
+background: -webkit-linear-gradient(top,  rgba(97,183,0,1) 0%,rgba(77,132,5,1) 100%);
+background: -o-linear-gradient(top,  rgba(97,183,0,1) 0%,rgba(77,132,5,1) 100%);
+background: -ms-linear-gradient(top,  rgba(97,183,0,1) 0%,rgba(77,132,5,1) 100%);
+background: linear-gradient(top,  rgba(97,183,0,1) 0%,rgba(77,132,5,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#61b700', endColorstr='#4d8405',GradientType=0 );
+}
+
+#submit_button:hover, #submit_button_ok:hover {
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.3);
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.3);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.3);
+bottom: -1px;
+}
+
+.large_list li:before {
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.4);
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.4);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.4);
+-webkit-border-radius: 30px;
+-moz-border-radius: 30px;
+border-radius: 30px;
+}
+
+#container_result footer {
+background: #c63333;
+background: -moz-linear-gradient(top,  #c63333 0%, #941717 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c63333), color-stop(100%,#941717));
+background: -webkit-linear-gradient(top,  #c63333 0%,#941717 100%);
+background: -o-linear-gradient(top,  #c63333 0%,#941717 100%);
+background: -ms-linear-gradient(top,  #c63333 0%,#941717 100%);
+background: linear-gradient(top,  #c63333 0%,#941717 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c63333', endColorstr='#941717',GradientType=0 );
+}
+
+#container_result footer span {
+text-shadow: 0 -1px 0 #530707;
+}
+
+.menu:hover>.click_button {
+-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+}
+
+.menu>ul {
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+-moz-box-shadow: 0 20px 40px #000;
+-webkit-box-shadow: 0 20px 40px #000;
+box-shadow: 0 20px 40px #000;
+background: #25363a;
+background: #182526;
+background: -moz-linear-gradient(top,  #182526 0%, #171e24 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#182526), color-stop(100%,#171e24));
+background: -webkit-linear-gradient(top,  #182526 0%,#171e24 100%);
+background: -o-linear-gradient(top,  #182526 0%,#171e24 100%);
+background: -ms-linear-gradient(top,  #182526 0%,#171e24 100%);
+background: linear-gradient(top,  #182526 0%,#171e24 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#182526', endColorstr='#171e24',GradientType=0 );
+}
+
+.popup {
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+-moz-box-shadow: 0 5px 15px #000, inset 0 1px 0 rgba(255,255,255,0.2);
+-webkit-box-shadow: 0 5px 15px #000, inset 0 1px 0 rgba(255,255,255,0.2);
+box-shadow: 0 5px 15px #000, inset 0 1px 0 rgba(255,255,255,0.2);
+background: #565656;
+background: -moz-linear-gradient(top,  #565656 0%, #333333 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#565656), color-stop(100%,#333333));
+background: -webkit-linear-gradient(top,  #565656 0%,#333333 100%);
+background: -o-linear-gradient(top,  #565656 0%,#333333 100%);
+background: -ms-linear-gradient(top,  #565656 0%,#333333 100%);
+background: linear-gradient(top,  #565656 0%,#333333 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#565656', endColorstr='#333333',GradientType=0 );
+}
+
+
+/* =============================================================================
+   1000px WIDTH > MEDIA QUERY (iPad)
+   ========================================================================== */
+
+@media only screen and (min-width: 1000px) {
+body {
+height: 65%;
+}
+
+#container_home header {
+padding-top: 2em;
+}
+
+#container_home footer {
+bottom: 300px;
+}
+
+#container, #container_result, #wrapper {
+margin: 0 auto;
+}
+
+.add_button {
+width: 198px;
+padding: 0 0 5px 2px;
+height: 195px;
+line-height: 200px;
+font-size: 3em;
+}
+
+header, footer {
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+
+header {
+padding-bottom: 45px;
+}
+
+#container_result header {
+padding-bottom: 5px;
+}
+
+footer {
+bottom: 0;
+height: 155px;
+position: fixed;
+}
+
+#add_shows {
+margin: 0 auto;
+width: 70%;
+}
+
+#add_shows span {
+font-size: 1.7em
+}
+
+#add_input {
+width: 96%;
+padding: 1em 0.7em 0.8em;
+margin-bottom: 0.7em;
+font-size: 1.6em;
+}
+
+.not_found aside:after {
+content: ". Check your spelling or type a different TV show";
+}
+
+select {
+font-size: 1.5em !important;
+height: 37px !important;
+}
+
+#season_input, #season_input:focus {
+width: 34%;
+}
+
+#submit_button, #submit_button_ok {
+right: -3px;
+}
+
+#submit_button span, #submit_button_ok span {
+font-size: 1.3em;
+}
+
+#submit_button span:after, #submit_button_ok span:after {
+content: " TV Show";
+}
+
+#submit_button:active, #submit_button_ok:active {
+bottom: -1px;
+}
+
+.suggestionsbox {
+width: 100%;
+top: 80px;
+}
+
+.suggestionList {
+font-size: 1.5em;
+}
+
+.suggestionList li {
+padding: 0.8em;
+}
+
+#main {
+padding-top: 55px;
+}
+
+#wrapper {
+width: 80%;
+margin: 0 auto;
+}
+
+.small_list {
+margin-left: 0.8em;
+}
+
+.small_list li, .small_list li:last-child {
+width: 19.5%;
+float: left;
+-moz-box-shadow: 0 1px 0px rgba(255,255,255,0.1), inset 0 10px 20px rgba(0,0,0,0.3), 0 -1px 1px #000;
+-webkit-box-shadow: 0 1px 0px rgba(255,255,255,0.1), inset 0 10px 20px rgba(0,0,0,0.3), 0 -1px 1px #000;
+box-shadow: 0 1px 0px rgba(255,255,255,0.1), inset 0 10px 20px rgba(0,0,0,0.3), 0 -1px 1px #000;
+background: #13181e;
+border-radius: 5px;
+margin: 0 0 1em 0.9em;
+height: 49px;
+}
+
+.small_list li h3 {
+display: block;
+margin: -4px 0 1px 0;
+position: absolute;
+top: 35px;
+}
+
+.small_list li p {
+margin-left: -7px;
+}
+
+.delete {
+top: 1px;
+right:-5px;
+}
+
+#calculate_button {
+width: 140px;
+height: 140px;
+line-height: 140px;
+background-image: url('../img/button_big.png');
+font-size: 1.8em;
+text-shadow: 0 -1px 0 #000;
+}
+
+#calculate_button:hover {
+color: #fff !important;
+}
+
+#container_result footer:before {
+left: 46%;
+top: 10px;
+}
+
+.menu {
+right: 40px;
+}
+
+.menu .click_button {
+margin: 15px 0 0 14px;
+}
+
+.menu ul {
+top: 35px;
+}
+
+.menu ul a {
+padding: 0.7em 0;
+display: block;
+}
+
+.menu ul li {
+padding: 0.3em 0.5em;
+}
+
+.menu ul li:first-child {
+padding: 1em 0.5em;
+}
+
+.popup_outer {
+padding-top: 26%;
+}
+
+.popup {
+width: 40%;
+}
+
+.popup a{
+display: inline !important;
+}
+}
+
+
+/* =============================================================================
+   1025px WIDTH > MEDIA QUERY
+   ========================================================================== */
+
+@media only screen and (min-width: 1025px) {
+body {
+height: 90%;
+}
+
+#container_home, #container, #container_result {
+width: 900px;
+}
+
+header, footer {
+width: 900px;
+padding-top: 2em;
+}
+
+#container footer {
+position: relative;
+margin-top: -2em;
+padding-top: 0;
+height: 250px;
+background: none;
+}
+
+#container_home h1 {
+text-align: center;
+margin-bottom: -0.5em;
+}
+
+#container_home h2 {
+text-align: center;
+margin-top: 2.5em;
+}
+
+header h1, header h2{
+display: block;
+text-align: left;
+margin-bottom: -0.1em;
+}
+
+h2 {
+font-family: 'Open Sans';
+text-transform: uppercase;
+font-weight: 400;
+font-size: 0.7em;
+color: #f7ad35;
+}
+
+.title_left {
+float: left;
+margin-right: -0.5em;
+width: 38%;
+}
+
+#add_shows {
+margin-top: 0.5em;
+float: left;
+width: 62%;
+z-index: 2;
+}
+
+.social_buttons {
+margin-top: 21px;
+display: block;
+-webkit-transition: all 0.5s;
+-moz-transition: all 0.5s; 
+-o-transition: all 0.5s;
+transition: all 0.5s; 
+filter:	alpha(opacity=50);
+-moz-opacity: 0.5;
+-khtml-opacity: 0.5;
+opacity: 0.5;
+}
+
+.social_buttons:hover {
+filter:	alpha(opacity=100);
+-moz-opacity: 1;
+-khtml-opacity: 1;
+opacity: 1;
+}
+
+.twitter-share-button, .gbutton, .fb-like{
+float: left;
+}
+
+.fb-like {
+z-index: 1;
+}
+
+.gbutton {
+margin-right: -15px;
+}
+
+#add_input {
+width: 96%;
+padding: 0.7em 0.7em 0.6em;
+margin-bottom: 0.7em;
+font-size: 1.6em;
+}
+
+select {
+font-size: 1.3em !important;
+height: 35px !important;
+}
+
+#submit_button, #submit_button_ok {
+right: -7px;
+padding: 0.2em 1em;
+height: 38px;
+}
+
+#submit_button span, #submit_button_ok span {
+font-size: 1.1em;
+}
+
+.suggestionsbox {
+width: 101%;
+top: 70px;
+}
+
+.suggestionList {
+font-size: 1.25em;
+}
+
+.suggestionList li {
+padding: 0.6em;
+}
+
+#wrapper {
+margin-top: 3.3em;
+width: 100%;
+height: auto;
+min-height: 200px;
+}
+
+ul { /* fix floats and move footer down as elements are added */
+overflow: auto;
+}
+
+.small_list {
+margin-left: 2.5em;
+}
+
+#container_result header {
+height: 12em;
+}
+
+.menu, .subtitle, #container_result footer:before {
+display: none;
+content: "";
+}
+
+#container_result footer { /* move the footer to the top */
+position: fixed;
+top: 3em;
+z-index: 10;
+width: 890px;
+padding: 0 0 0 1em;
+height: 11em;
+border-radius: 10px;
+}
+
+#container_result footer p {
+font-size: 5em;
+}
+
+.result_large {
+display: block;
+text-transform: uppercase;
+color: #f7ad35;
+margin-top: -1.4em;
+}
+
+.result_large article {
+font-family: 'Yanone Kaffeesatz';
+letter-spacing: 0.05em;
+font-size: 1.6em;
+font-style: none;
+text-shadow: 0 -1px 0 #222;
+}
+
+.twitter_large {
+font-family: 'Yanone Kaffeesatz';
+letter-spacing: 0.05em;
+font-size: 1.4em;
+margin-top: 0.7em;
+padding-top: 0.3em;
+float: right;
+display: none;
+background: #171e24;
+}
+
+.large_list {
+margin-left: -0.8em;
+width: 930px;
+}
+
+.large_list li, .large_list li:last-child {
+width: 228px;
+float: left;
+-moz-box-shadow: 0 1px 0px rgba(255,255,255,0.1), inset 0 10px 20px rgba(0,0,0,0.3), 0 -1px 1px #000;
+-webkit-box-shadow: 0 1px 0px rgba(255,255,255,0.1), inset 0 10px 20px rgba(0,0,0,0.3), 0 -1px 1px #000;
+box-shadow: 0 1px 0px rgba(255,255,255,0.1), inset 0 10px 20px rgba(0,0,0,0.3), 0 -1px 1px #000;
+background: #13181e;
+border-radius: 5px;
+margin: 0 0 1em 0.9em;
+height: 97px;
+display:block;
+}
+
+.large_list li h3 {
+font-size: 2.1em;
+margin-left: -5px;
+}
+
+.large_list li p {
+margin-left: -5px;
+font-size: 1.2em;
+}
+
+.large_list img {
+margin-right: -2.5em;
+}
+
+.large_list li:before { /* removes the + symbol from first */
+content: "";
+background: transparent;
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+
+.footer_info {
+display: block;
+margin-top: 4em;
+font-family: 'Yanone Kaffeesatz';
+letter-spacing: 0.08em;
+font-size: 1.125em;
+text-align:left;
+position: relative;
+font-family: 'Open Sans';
+letter-spacing: 0.03em;
+font-size: 0.8em;
+-webkit-transition: all 0.5s;
+-moz-transition: all 0.5s; 
+-o-transition: all 0.5s;
+transition: all 0.5s; 
+filter:	alpha(opacity=60);
+-moz-opacity: 0.6;
+-khtml-opacity: 0.6;
+opacity: 0.6;
+text-shadow: 0 -1px 0 #000;
+}
+
+#container_result .footer_info{ /* move footer info up and add padding at bottom */
+margin-top: -5em;
+padding-bottom: 3em;
+}
+
+.footer_info:hover {
+filter:	alpha(opacity=100);
+-moz-opacity: 1;
+-khtml-opacity: 1;
+opacity: 1;
+}
+
+.footer_info .left {
+width: 45%;
+}
+
+.footer_info .left div {
+margin-top: 8px;
+text-transform: uppercase;
+font-size: 0.8em;
+}
+
+.footer_info .right {
+position: absolute;
+right: 0px;
+width: 35%;
+top: 0;
+}
+
+.twitter-follow-button {
+margin-top: -2px;
+}
+
+}
+
+/* =============================================================================
+   Non-semantic helper classes
+   Please define your styles before this section.
+   ========================================================================== */
+
+/* For image replacement */
+.ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
+.ir br { display: none; }
+
+/* Hide for both screenreaders and browsers:
+   css-discuss.incutio.com/wiki/Screenreader_Visibility */
+.hidden { display: none; visibility: hidden; }
+
+/* Hide only visually, but have it available for screenreaders: by Jon Neal.
+  www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden */
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: drupal.org/node/897638 */
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible { visibility: hidden; }
+
+/* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */ 
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+
+/* =============================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+ 
+@media print {
+  * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: sanbeiji.com/archives/953 */
+  a, a:visited { color: #444 !important; text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; } /* css-discuss.incutio.com/wiki/Printing_Tables */
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3{ page-break-after: avoid; }
+}
