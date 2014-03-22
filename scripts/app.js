@@ -2456,7 +2456,7 @@ the specific language governing permissions and limitations under the Apache Lic
             }).html([
                 "<ul class='select2-choices'>",
                 "  <li class='select2-search-field'>",
-                "    <input type='text' autocomplete='off' autocorrect='off' placeholder='Type-in a TV show' autocapitalize='off' spellcheck='false' class='select2-input' required autofocus='true'>",
+                "    <input type='text' autocomplete='off' autocorrect='off' placeholder='Type-in a TV show' title='Name of a TV show' autocapitalize='off' spellcheck='false' class='select2-input' required autofocus='true'>",
                 "  </li>",
                 "</ul>",
                 "<div class='select2-drop select2-drop-multi select2-display-none'>",
