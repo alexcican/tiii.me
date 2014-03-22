@@ -136,6 +136,27 @@ function updateClock(days, hours, minutes) {
   (days == '01') ? $daysContainer.find('.description').text('day') : $daysContainer.find('.description').text('days');
   (hours == '01') ? $hoursContainer.find('.description').text('hour') : $hoursContainer.find('.description').text('hours');
   (minutes == '01') ? $minutesContainer.find('.description').text('minute') : $minutesContainer.find('.description').text('minutes');
+
+
+
+  // tweet link text change
+  if (days < 01) {
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + hours + ' hours and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+  } else if (days == 01) {
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' day, ' + hours + ' hours, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+  } else if (hours < 01) {
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+  } else if (hours == 01) {
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hour, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+  } else if (minutes < 01) {
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days and ' + hours + ' hours of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+  } else if (minutes == 01) {
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hours, and ' + minutes + ' minute of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+  } else if ((hours < 01) && (minutes < 01)) {
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+  } else {
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hours, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+  }
 }
 
 

@@ -170,17 +170,19 @@
 // shows submit button (because comes from display: none)
 // but in order to animate need following properties
 .showing.submit {
-  display: block-inline;
+  display: inline-block;
   @include opacity (0);
 }
 
 // hiding
 .hiding.submit {
+  display: none;
   @include animation(0, .3s, moveLeft);
 }
 
 // shows submit button
 .show.submit {
+  display: inline-block;
   @include animation(0, .3s, moveRight);
 }
 
@@ -188,7 +190,7 @@
 
 // shows submit button (because comes from display: none)
 .showing.show-to-add {
-  display: block-inline;
+  display: inline-block;
   width: 3px !important; // browser bug (0px shifts other TV shows)
   @include opacity (0);
 }

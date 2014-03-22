@@ -971,12 +971,13 @@
 }
 
 .showing.submit {
-  display: block-inline;
+  display: inline-block;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
 
 .hiding.submit {
+  display: none;
   -webkit-animation-delay: 0;
   -webkit-animation-duration: 0.3s;
   -webkit-animation-name: moveLeft;
@@ -1005,6 +1006,7 @@
 }
 
 .show.submit {
+  display: inline-block;
   -webkit-animation-delay: 0;
   -webkit-animation-duration: 0.3s;
   -webkit-animation-name: moveRight;
@@ -1033,7 +1035,7 @@
 }
 
 .showing.show-to-add {
-  display: block-inline;
+  display: inline-block;
   width: 3px !important;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
