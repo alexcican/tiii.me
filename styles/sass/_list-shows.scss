@@ -62,6 +62,7 @@
   text-decoration: none !important;
   z-index: 1;
   @include transitions;
+  @include hardware-acceleratation;
 }
 
 
