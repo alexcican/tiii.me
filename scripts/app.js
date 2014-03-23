@@ -3536,8 +3536,7 @@ $('.tvshow').change(function() {
       }
 
       // change # seasons input for that specific TV show
-      $('.seasons').val(selectedTVshow[0].seasons).attr('max', selectedTVshow[0].seasons);
-
+      $('.seasons').attr('max', selectedTVshow[0].seasons);
 
 
       // save TV show's details
@@ -3559,13 +3558,17 @@ $('.tvshow').change(function() {
     setTimeout(function() {$('.bg').attr('src', '');}, 1000);
   }
 
-
-
   // removes default plugin tv show added in their format
   $('.select2-search-choice.visuallyhidden').remove();
 
+
+
   // focuses on seasons input
-  setTimeout(function() {$('.seasons').focus();}, 100);
+  setTimeout(function() {
+    $('.seasons').focus().val(selectedTVshow[0].seasons);
+    showSubmitButton();
+  }, 100);
+
   hasSelectedShow = true;
 });
 
