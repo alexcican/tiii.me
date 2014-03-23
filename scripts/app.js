@@ -3902,8 +3902,5 @@ $('.container__list-of-shows').on('click touchstart', '.js-remove-item', functio
 
 
 
-  // focus on input again
-  $('.select2-input').focus();
-
   return false
 })
