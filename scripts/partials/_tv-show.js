@@ -10,7 +10,7 @@ $(".tvshow").select2({
   placeholder: "Type in a TV show",
   multiple: true,
   maximumSelectionSize: 1,
-  minimumInputLength: 3,
+  minimumInputLength: 2,
   maximumInputLength: 20,
   query: function(query) {
     var data = {results: []};
