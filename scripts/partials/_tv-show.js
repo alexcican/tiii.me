@@ -83,29 +83,29 @@ $('.tvshow').change(function() {
     if (typeof(selectedTVshow[0]) != "undefined") {
 
       // checks if same show already exists
-      var TVshowAlreadyExists = false;
-      $('.container__list-of-shows li').each(function() {
-        var tvShowTitle = $(this).find('.container__list-of-shows__info__title').text();
+      // var TVshowAlreadyExists = false;
+      // $('.container__list-of-shows li').each(function() {
+        // var tvShowTitle = $(this).find('.container__list-of-shows__info__title').text();
 
-        if (tvShowTitle === selectedTVshow[0].text)
-          TVshowAlreadyExists = true;
-      })
+        // if (tvShowTitle === selectedTVshow[0].text)
+          // TVshowAlreadyExists = true;
+      // })
 
 
       // if same show has already been added, displays message and doesn't allow addition of new show
-      if (TVshowAlreadyExists) {
-        var $listItem = $('.select2-results');
-        $listItem.parent().css("display", "block");
-        $('<li />').addClass('select2-no-results').html('You&rsquo;ve already added this TV show. Try a different one').appendTo($listItem);
-        hasSelectedShow = false;
+      // if (TVshowAlreadyExists) {
+        // var $listItem = $('.select2-results');
+        // $listItem.parent().css("display", "block");
+        // $('<li />').addClass('select2-no-results').html('You&rsquo;ve already added this TV show. Try a different one').appendTo($listItem);
+        // hasSelectedShow = false;
 
         // removes default plugin tv show added in their format
-        $('.select2-search-choice.visuallyhidden').remove();
+        // $('.select2-search-choice.visuallyhidden').remove();
 
-        return false;
+        // return false;
 
 
-      } else {
+      // } else {
         // new show, add it
         // if background of TV show selected is different from current bg image replace it
         var backgroundSource = $('.bg').css('background-image'),
@@ -136,7 +136,9 @@ $('.tvshow').change(function() {
 
         // adds value of TV show text to input
         $('input').val(selectedTVshow[0].text);
-      }
+
+      // }
+
       } else {
         // hides background image
         $('.bg').addClass('hide');

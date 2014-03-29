@@ -3506,29 +3506,29 @@ $('.tvshow').change(function() {
     if (typeof(selectedTVshow[0]) != "undefined") {
 
       // checks if same show already exists
-      var TVshowAlreadyExists = false;
-      $('.container__list-of-shows li').each(function() {
-        var tvShowTitle = $(this).find('.container__list-of-shows__info__title').text();
+      // var TVshowAlreadyExists = false;
+      // $('.container__list-of-shows li').each(function() {
+        // var tvShowTitle = $(this).find('.container__list-of-shows__info__title').text();
 
-        if (tvShowTitle === selectedTVshow[0].text)
-          TVshowAlreadyExists = true;
-      })
+        // if (tvShowTitle === selectedTVshow[0].text)
+          // TVshowAlreadyExists = true;
+      // })
 
 
       // if same show has already been added, displays message and doesn't allow addition of new show
-      if (TVshowAlreadyExists) {
-        var $listItem = $('.select2-results');
-        $listItem.parent().css("display", "block");
-        $('<li />').addClass('select2-no-results').html('You&rsquo;ve already added this TV show. Try a different one').appendTo($listItem);
-        hasSelectedShow = false;
+      // if (TVshowAlreadyExists) {
+        // var $listItem = $('.select2-results');
+        // $listItem.parent().css("display", "block");
+        // $('<li />').addClass('select2-no-results').html('You&rsquo;ve already added this TV show. Try a different one').appendTo($listItem);
+        // hasSelectedShow = false;
 
         // removes default plugin tv show added in their format
-        $('.select2-search-choice.visuallyhidden').remove();
+        // $('.select2-search-choice.visuallyhidden').remove();
 
-        return false;
+        // return false;
 
 
-      } else {
+      // } else {
         // new show, add it
         // if background of TV show selected is different from current bg image replace it
         var backgroundSource = $('.bg').css('background-image'),
@@ -3559,7 +3559,9 @@ $('.tvshow').change(function() {
 
         // adds value of TV show text to input
         $('input').val(selectedTVshow[0].text);
-      }
+
+      // }
+
       } else {
         // hides background image
         $('.bg').addClass('hide');
@@ -3723,7 +3725,12 @@ $('.submit').on('click touchstart', function() {
   if ($('.result-container').is('.visuallyhidden')) {
     $('.result-container').removeClass('visuallyhidden');
     $('.result-container').parent().removeClass('hiding');
+  } else {
+
+    // calculates previous time of show (only if more than 1 show is in list)
+    showTemporaryTimerOfPreviousShow(timeWastedInMinutes);
   }
+
 
   return false;
 })
@@ -3731,8 +3738,32 @@ $('.submit').on('click touchstart', function() {
 
 
 
+// shows temporary timer of previous show above global timer
+function showTemporaryTimerOfPreviousShow(timeWasted, subtractShow) {
+  var previousShowTime = convertMinutes(timeWasted, true);
+
+  // if removing TV show, display "-" instead of "+"
+  if (subtractShow) {
+    $('.container__top__previous-show-time').html('- ' + previousShowTime);
+  } else {
+    $('.container__top__previous-show-time').html('+ ' + previousShowTime);
+  }
+
+  $('.container__top__previous-show-time').removeClass('visuallyhidden').addClass('show');
+
+  // CSS animations for hiding the temporary counter number
+  setTimeout(function() {
+    $('.container__top__previous-show-time').removeClass('show').addClass('hiding');
+    setTimeout(function() {
+      $('.container__top__previous-show-time').removeClass('hiding').addClass('visuallyhidden');
+    }, 400);
+  }, 3000);
+}
+
+
+
 // converts minutes into days, hours, minutes
-function convertMinutes(totalMinutes) {
+function convertMinutes(totalMinutes, dontUpdateClock) {
   var days = Math.floor(totalMinutes / 1440);
   var hours = Math.floor((totalMinutes - days * 1440) / 60);
   var minutes = Math.floor(totalMinutes - (days * 1440) - (hours * 60))
@@ -3742,8 +3773,14 @@ function convertMinutes(totalMinutes) {
   hours = formatNumber(hours, 2);
   minutes = formatNumber(minutes, 2);
 
-  // updates clock counter
-  updateClock(days, hours, minutes);
+  // updates clock counter if no flag is set
+  if (dontUpdateClock) {
+    return (days + ' : ' + hours + ' : ' + minutes);
+
+  } else {
+    // updates clock counter
+    updateClock(days, hours, minutes);
+  }
 }
 
 
@@ -3772,9 +3809,9 @@ function updateClock(days, hours, minutes) {
   // $minutesContainer.find('.numbers').text(minutes);
 
   // countUp plugin update number
-  var daysCount = new countUp("days", 00, days, 0, 1.5),
-      hoursCount = new countUp("hours", 00, hours, 0, 3),
-      minutesCount = new countUp("minutes", 00, minutes, 0, 5);
+  var daysCount = new countUp("days", 00, days, 0, 2),
+      hoursCount = new countUp("hours", 00, hours, 0, 4),
+      minutesCount = new countUp("minutes", 00, minutes, 0, 6);
   daysCount.reset();
   hoursCount.reset();
   minutesCount.reset();
@@ -3934,6 +3971,9 @@ $('.container__list-of-shows').on('click touchstart', '.js-remove-item', functio
   }
 
 
+
+  // shows time of removed TV show temporarily
+  showTemporaryTimerOfPreviousShow(timeWastedInMinutes, true);
 
   return false
 })

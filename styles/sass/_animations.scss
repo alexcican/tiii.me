@@ -165,6 +165,16 @@
   @include animation(.4s, .3s, moveDown);
 }
 
+// moves up the content
+.show.container__top__previous-show-time {
+  @include animation(0, .3s, moveDown);
+}
+
+// moves down down the content
+.hiding.container__top__previous-show-time {
+  @include animation(0, .3s, fadeUp);
+}
+
 
 
 // shows submit button (because comes from display: none)

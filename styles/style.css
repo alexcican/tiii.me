@@ -970,6 +970,62 @@
   animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
 }
 
+.show.container__top__previous-show-time {
+  -webkit-animation-delay: 0;
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-name: moveDown;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
+  -moz-animation-delay: 0;
+  -moz-animation-duration: 0.3s;
+  -moz-animation-name: moveDown;
+  -moz-animation-fill-mode: forwards;
+  -moz-animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
+  -o-animation-delay: 0;
+  -o-animation-duration: 0.3s;
+  -o-animation-name: moveDown;
+  -o-animation-fill-mode: forwards;
+  -o-animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
+  -ms-animation-delay: 0;
+  -ms-animation-duration: 0.3s;
+  -ms-animation-name: moveDown;
+  -ms-animation-fill-mode: forwards;
+  -ms-animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
+  animation-delay: 0;
+  animation-duration: 0.3s;
+  animation-name: moveDown;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
+}
+
+.hiding.container__top__previous-show-time {
+  -webkit-animation-delay: 0;
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-name: fadeUp;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
+  -moz-animation-delay: 0;
+  -moz-animation-duration: 0.3s;
+  -moz-animation-name: fadeUp;
+  -moz-animation-fill-mode: forwards;
+  -moz-animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
+  -o-animation-delay: 0;
+  -o-animation-duration: 0.3s;
+  -o-animation-name: fadeUp;
+  -o-animation-fill-mode: forwards;
+  -o-animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
+  -ms-animation-delay: 0;
+  -ms-animation-duration: 0.3s;
+  -ms-animation-name: fadeUp;
+  -ms-animation-fill-mode: forwards;
+  -ms-animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
+  animation-delay: 0;
+  animation-duration: 0.3s;
+  animation-name: fadeUp;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.33, 1.02, 0.18, 1.4);
+}
+
 .showing.submit {
   display: inline-block;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
@@ -1729,6 +1785,16 @@ a:focus {
 .container__top, .container__info {
   margin: 2% 0;
   height: 220px;
+}
+
+.container__top__previous-show-time {
+  position: absolute;
+  top: 3.5em;
+  left: 0;
+  right: 0;
+  color: #534e45;
+  font-weight: 500;
+  letter-spacing: -.1em;
 }
 
 .about__icon {

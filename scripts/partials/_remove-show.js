@@ -35,5 +35,8 @@ $('.container__list-of-shows').on('click touchstart', '.js-remove-item', functio
 
 
 
+  // shows time of removed TV show temporarily
+  showTemporaryTimerOfPreviousShow(timeWastedInMinutes, true);
+
   return false
 })
