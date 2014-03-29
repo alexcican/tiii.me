@@ -48,10 +48,19 @@ function load() {
 
 
 
+// resets all saved data
+function reset() {
+  localStorage.removeItem('time');
+  localStorage.removeItem('shows');
+  document.location.reload(true);
+}
+
+
+
 // loads shows from localstorage
 setTimeout(function() {
   load();
-}, 500);
+}, 400);
 
 
 

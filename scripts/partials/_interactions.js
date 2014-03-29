@@ -80,7 +80,6 @@ $('.submit').on('click touchstart', function() {
 
 
 
-
 // converts minutes into days, hours, minutes
 function convertMinutes(totalMinutes) {
   var days = Math.floor(totalMinutes / 1440);
@@ -236,3 +235,13 @@ function hideModalWindow() {
   // keyboard navigation ordering (hides popover links)
   $('.about__content a').attr('tabindex','-1');
 }
+
+
+
+
+
+// resets all data button click calls function
+$('.reset-local-storage').on('click touchstart', function() {
+  reset();
+  return false;
+})

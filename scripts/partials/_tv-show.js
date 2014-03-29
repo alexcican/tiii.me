@@ -78,70 +78,82 @@ $('.tvshow').change(function() {
   // removes TV shows that were appended (selected from dropdown) but eventually not added (submitted)
   $('.show-to-add').remove();
 
+  if (selectedTVshow[0].seasons > 0) {
+    // if selected TV show exists
+    if (typeof(selectedTVshow[0]) != "undefined") {
 
-  // if selected TV show exists
-  if (typeof(selectedTVshow[0]) != "undefined") {
-    // checks if same show already exists
-    var TVshowAlreadyExists = false;
-    $('.container__list-of-shows li').each(function() {
-      var tvShowTitle = $(this).find('.container__list-of-shows__info__title').text();
+      // checks if same show already exists
+      var TVshowAlreadyExists = false;
+      $('.container__list-of-shows li').each(function() {
+        var tvShowTitle = $(this).find('.container__list-of-shows__info__title').text();
 
-      if (tvShowTitle === selectedTVshow[0].text)
-        TVshowAlreadyExists = true;
-    })
-
-
-    // if same show has already been added, displays message and doesn't allow addition of new show
-    if (TVshowAlreadyExists) {
-      var $listItem = $('.select2-results');
-      $listItem.parent().css("display", "block");
-      $('<li />').addClass('select2-no-results').html('You&rsquo;ve already added this TV show. Try a different one').appendTo($listItem);
-      hasSelectedShow = false;
-
-      // removes default plugin tv show added in their format
-      $('.select2-search-choice.visuallyhidden').remove();
-
-      return false;
+        if (tvShowTitle === selectedTVshow[0].text)
+          TVshowAlreadyExists = true;
+      })
 
 
-    } else {
-      // new show, add it
-      // if background of TV show selected is different from current bg image replace it
-      var backgroundSource = $('.bg').css('background-image'),
-          TVshowBackground = 'url(' + selectedTVshow[0].bg + ')';
+      // if same show has already been added, displays message and doesn't allow addition of new show
+      if (TVshowAlreadyExists) {
+        var $listItem = $('.select2-results');
+        $listItem.parent().css("display", "block");
+        $('<li />').addClass('select2-no-results').html('You&rsquo;ve already added this TV show. Try a different one').appendTo($listItem);
+        hasSelectedShow = false;
 
-      if (TVshowBackground != backgroundSource) {
-        var image = new Image();
-        image.src = selectedTVshow[0].bg;
+        // removes default plugin tv show added in their format
+        $('.select2-search-choice.visuallyhidden').remove();
 
-        // allow time to preload image before showing
-        setTimeout(function(){
-          $('.bg').css('background-image', TVshowBackground);
-          image = null;
-        }, 1400);
+        return false;
+
+
+      } else {
+        // new show, add it
+        // if background of TV show selected is different from current bg image replace it
+        var backgroundSource = $('.bg').css('background-image'),
+            TVshowBackground = 'url(' + selectedTVshow[0].bg + ')';
+
+        if (TVshowBackground != backgroundSource) {
+          var image = new Image();
+          image.src = selectedTVshow[0].bg;
+
+          // allow time to preload image before showing
+          setTimeout(function(){
+            $('.bg').css('background-image', TVshowBackground);
+            image = null;
+          }, 1400);
+        }
+
+        // change # seasons input for that specific TV show
+        $('.seasons').attr('max', selectedTVshow[0].seasons);
+
+
+        // save TV show's details
+        totalSeasons = selectedTVshow[0].seasons;
+        episodes = selectedTVshow[0].episodes;
+        runtime = selectedTVshow[0].runtime;
+
+        // prepend the <li> with TV show and hide it for now
+        $('.container__list-of-shows').prepend('<li class="show-to-add  visuallyhidden"><a href="#" class="btn icon-close  js-remove-item" title="Remove this TV show"></a><img src="' + selectedTVshow[0].poster + '" alt="' + selectedTVshow[0].text + '" /><div class="container__list-of-shows__info"><span class="container__list-of-shows__info__title" title="TV show title">' + selectedTVshow[0].text +'</span><span class="container__list-of-shows__info__seasons" title="Nr. of seasons"></span><span class="container__list-of-shows__info__wasted-time  visuallyhidden"></span></div></li>');
+
+        // adds value of TV show text to input
+        $('input').val(selectedTVshow[0].text);
       }
+      } else {
+        // hides background image
+        $('.bg').addClass('hide');
 
-      // change # seasons input for that specific TV show
-      $('.seasons').attr('max', selectedTVshow[0].seasons);
-
-
-      // save TV show's details
-      totalSeasons = selectedTVshow[0].seasons;
-      episodes = selectedTVshow[0].episodes;
-      runtime = selectedTVshow[0].runtime;
-
-      // prepend the <li> with TV show and hide it for now
-      $('.container__list-of-shows').prepend('<li class="show-to-add  visuallyhidden"><a href="#" class="btn icon-close  js-remove-item" title="Remove this TV show"></a><img src="' + selectedTVshow[0].poster + '" alt="' + selectedTVshow[0].text + '" /><div class="container__list-of-shows__info"><span class="container__list-of-shows__info__title" title="TV show title">' + selectedTVshow[0].text +'</span><span class="container__list-of-shows__info__seasons" title="Nr. of seasons"></span><span class="container__list-of-shows__info__wasted-time  visuallyhidden"></span></div></li>');
-
-      // adds value of TV show text to input
-      $('input').val(selectedTVshow[0].text);
-    }
+        // removes background image
+        setTimeout(function() {$('.bg').attr('src', '');}, 1000);
+      }
   } else {
-    // hides background image
-    $('.bg').addClass('hide');
+    var $listItem = $('.select2-results');
+    $listItem.parent().css("display", "block");
+    $('<li />').addClass('select2-no-results').html('This show has an error. Please select a different one.').appendTo($listItem);
+    hasSelectedShow = false;
 
-    // removes background image
-    setTimeout(function() {$('.bg').attr('src', '');}, 1000);
+    // removes default plugin tv show added in their format
+    $('.select2-search-choice.visuallyhidden').remove();
+
+    return false;
   }
 
   // removes default plugin tv show added in their format

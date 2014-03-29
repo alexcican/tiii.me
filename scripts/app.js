@@ -48,10 +48,19 @@ function load() {
 
 
 
+// resets all saved data
+function reset() {
+  localStorage.removeItem('time');
+  localStorage.removeItem('shows');
+  document.location.reload(true);
+}
+
+
+
 // loads shows from localstorage
 setTimeout(function() {
   load();
-}, 500);
+}, 400);
 
 
 
@@ -3492,70 +3501,82 @@ $('.tvshow').change(function() {
   // removes TV shows that were appended (selected from dropdown) but eventually not added (submitted)
   $('.show-to-add').remove();
 
+  if (selectedTVshow[0].seasons > 0) {
+    // if selected TV show exists
+    if (typeof(selectedTVshow[0]) != "undefined") {
 
-  // if selected TV show exists
-  if (typeof(selectedTVshow[0]) != "undefined") {
-    // checks if same show already exists
-    var TVshowAlreadyExists = false;
-    $('.container__list-of-shows li').each(function() {
-      var tvShowTitle = $(this).find('.container__list-of-shows__info__title').text();
+      // checks if same show already exists
+      var TVshowAlreadyExists = false;
+      $('.container__list-of-shows li').each(function() {
+        var tvShowTitle = $(this).find('.container__list-of-shows__info__title').text();
 
-      if (tvShowTitle === selectedTVshow[0].text)
-        TVshowAlreadyExists = true;
-    })
-
-
-    // if same show has already been added, displays message and doesn't allow addition of new show
-    if (TVshowAlreadyExists) {
-      var $listItem = $('.select2-results');
-      $listItem.parent().css("display", "block");
-      $('<li />').addClass('select2-no-results').html('You&rsquo;ve already added this TV show. Try a different one').appendTo($listItem);
-      hasSelectedShow = false;
-
-      // removes default plugin tv show added in their format
-      $('.select2-search-choice.visuallyhidden').remove();
-
-      return false;
+        if (tvShowTitle === selectedTVshow[0].text)
+          TVshowAlreadyExists = true;
+      })
 
 
-    } else {
-      // new show, add it
-      // if background of TV show selected is different from current bg image replace it
-      var backgroundSource = $('.bg').css('background-image'),
-          TVshowBackground = 'url(' + selectedTVshow[0].bg + ')';
+      // if same show has already been added, displays message and doesn't allow addition of new show
+      if (TVshowAlreadyExists) {
+        var $listItem = $('.select2-results');
+        $listItem.parent().css("display", "block");
+        $('<li />').addClass('select2-no-results').html('You&rsquo;ve already added this TV show. Try a different one').appendTo($listItem);
+        hasSelectedShow = false;
 
-      if (TVshowBackground != backgroundSource) {
-        var image = new Image();
-        image.src = selectedTVshow[0].bg;
+        // removes default plugin tv show added in their format
+        $('.select2-search-choice.visuallyhidden').remove();
 
-        // allow time to preload image before showing
-        setTimeout(function(){
-          $('.bg').css('background-image', TVshowBackground);
-          image = null;
-        }, 1400);
+        return false;
+
+
+      } else {
+        // new show, add it
+        // if background of TV show selected is different from current bg image replace it
+        var backgroundSource = $('.bg').css('background-image'),
+            TVshowBackground = 'url(' + selectedTVshow[0].bg + ')';
+
+        if (TVshowBackground != backgroundSource) {
+          var image = new Image();
+          image.src = selectedTVshow[0].bg;
+
+          // allow time to preload image before showing
+          setTimeout(function(){
+            $('.bg').css('background-image', TVshowBackground);
+            image = null;
+          }, 1400);
+        }
+
+        // change # seasons input for that specific TV show
+        $('.seasons').attr('max', selectedTVshow[0].seasons);
+
+
+        // save TV show's details
+        totalSeasons = selectedTVshow[0].seasons;
+        episodes = selectedTVshow[0].episodes;
+        runtime = selectedTVshow[0].runtime;
+
+        // prepend the <li> with TV show and hide it for now
+        $('.container__list-of-shows').prepend('<li class="show-to-add  visuallyhidden"><a href="#" class="btn icon-close  js-remove-item" title="Remove this TV show"></a><img src="' + selectedTVshow[0].poster + '" alt="' + selectedTVshow[0].text + '" /><div class="container__list-of-shows__info"><span class="container__list-of-shows__info__title" title="TV show title">' + selectedTVshow[0].text +'</span><span class="container__list-of-shows__info__seasons" title="Nr. of seasons"></span><span class="container__list-of-shows__info__wasted-time  visuallyhidden"></span></div></li>');
+
+        // adds value of TV show text to input
+        $('input').val(selectedTVshow[0].text);
       }
+      } else {
+        // hides background image
+        $('.bg').addClass('hide');
 
-      // change # seasons input for that specific TV show
-      $('.seasons').attr('max', selectedTVshow[0].seasons);
-
-
-      // save TV show's details
-      totalSeasons = selectedTVshow[0].seasons;
-      episodes = selectedTVshow[0].episodes;
-      runtime = selectedTVshow[0].runtime;
-
-      // prepend the <li> with TV show and hide it for now
-      $('.container__list-of-shows').prepend('<li class="show-to-add  visuallyhidden"><a href="#" class="btn icon-close  js-remove-item" title="Remove this TV show"></a><img src="' + selectedTVshow[0].poster + '" alt="' + selectedTVshow[0].text + '" /><div class="container__list-of-shows__info"><span class="container__list-of-shows__info__title" title="TV show title">' + selectedTVshow[0].text +'</span><span class="container__list-of-shows__info__seasons" title="Nr. of seasons"></span><span class="container__list-of-shows__info__wasted-time  visuallyhidden"></span></div></li>');
-
-      // adds value of TV show text to input
-      $('input').val(selectedTVshow[0].text);
-    }
+        // removes background image
+        setTimeout(function() {$('.bg').attr('src', '');}, 1000);
+      }
   } else {
-    // hides background image
-    $('.bg').addClass('hide');
+    var $listItem = $('.select2-results');
+    $listItem.parent().css("display", "block");
+    $('<li />').addClass('select2-no-results').html('This show has an error. Please select a different one.').appendTo($listItem);
+    hasSelectedShow = false;
 
-    // removes background image
-    setTimeout(function() {$('.bg').attr('src', '');}, 1000);
+    // removes default plugin tv show added in their format
+    $('.select2-search-choice.visuallyhidden').remove();
+
+    return false;
   }
 
   // removes default plugin tv show added in their format
@@ -3706,7 +3727,6 @@ $('.submit').on('click touchstart', function() {
 
   return false;
 })
-
 
 
 
@@ -3866,6 +3886,16 @@ function hideModalWindow() {
   // keyboard navigation ordering (hides popover links)
   $('.about__content a').attr('tabindex','-1');
 }
+
+
+
+
+
+// resets all data button click calls function
+$('.reset-local-storage').on('click touchstart', function() {
+  reset();
+  return false;
+})
 // COUNT TIME WASTED
 function countUp(a,b,c,d,e,f){this.options=f||{useEasing:!0,useGrouping:!0,separator:",",decimal:"."};for(var g=0,h=["webkit","moz","ms"],i=0;i<h.length&&!window.requestAnimationFrame;++i)window.requestAnimationFrame=window[h[i]+"RequestAnimationFrame"],window.cancelAnimationFrame=window[h[i]+"CancelAnimationFrame"]||window[h[i]+"CancelRequestAnimationFrame"];window.requestAnimationFrame||(window.requestAnimationFrame=function(a){var c=(new Date).getTime(),d=Math.max(0,16-(c-g)),e=window.setTimeout(function(){a(c+d)},d);return g=c+d,e}),window.cancelAnimationFrame||(window.cancelAnimationFrame=function(a){clearTimeout(a)});var j=this;this.d="string"==typeof a?document.getElementById(a):a,this.startVal=Number(b),this.endVal=Number(c),this.countDown=this.startVal>this.endVal?!0:!1,this.startTime=null,this.timestamp=null,this.remaining=null,this.frameVal=this.startVal,this.rAF=null,this.decimals=Math.max(0,d||0),this.dec=Math.pow(10,this.decimals),this.duration=1e3*e||2e3,this.easeOutExpo=function(a,b,c,d){return 1024*c*(-Math.pow(2,-10*a/d)+1)/1023+b},this.count=function(a){null===j.startTime&&(j.startTime=a),j.timestamp=a;var b=a-j.startTime;if(j.remaining=j.duration-b,j.options.useEasing)if(j.countDown){var c=j.easeOutExpo(b,0,j.startVal-j.endVal,j.duration);j.frameVal=j.startVal-c}else j.frameVal=j.easeOutExpo(b,j.startVal,j.endVal-j.startVal,j.duration);else if(j.countDown){var c=(j.startVal-j.endVal)*(b/j.duration);j.frameVal=j.startVal-c}else j.frameVal=j.startVal+(j.endVal-j.startVal)*(b/j.duration);j.frameVal=Math.round(j.frameVal*j.dec)/j.dec,j.frameVal=j.countDown?j.frameVal<j.endVal?j.endVal:j.frameVal:j.frameVal>j.endVal?j.endVal:j.frameVal,j.d.innerHTML=j.formatNumber(j.frameVal.toFixed(j.decimals)),b<j.duration?j.rAF=requestAnimationFrame(j.count):null!=j.callback&&j.callback()},this.start=function(a){return j.callback=a,isNaN(j.endVal)||isNaN(j.startVal)?(console.log("countUp error: startVal or endVal is not a number"),j.d.innerHTML="--"):j.rAF=requestAnimationFrame(j.count),!1},this.stop=function(){cancelAnimationFrame(j.rAF)},this.reset=function(){j.startTime=null,cancelAnimationFrame(j.rAF),j.d.innerHTML=j.formatNumber(j.startVal.toFixed(j.decimals))},this.resume=function(){j.startTime=null,j.duration=j.remaining,j.startVal=j.frameVal,requestAnimationFrame(j.count)},this.formatNumber=function(a){a+="";var b,c,d,e;if(b=a.split("."),c=b[0],d=b.length>1?j.options.decimal+b[1]:"",e=/(\d+)(\d{3})/,j.options.useGrouping)for(;e.test(c);)c=c.replace(e,"$1"+j.options.separator+"$2");return c+d},j.d.innerHTML=j.formatNumber(j.startVal.toFixed(j.decimals))}
 // REMOVING SHOW FUNCTIONS
