@@ -1380,7 +1380,7 @@ a:focus {
   float: left;
   /* inline-block for ie7 */
   zoom: 1;
-  width: 71.5%;
+  width: 72%;
   *display: inline;
   vertical-align: middle;
 }
@@ -1784,7 +1784,7 @@ a:focus {
 
 .container__top, .container__info {
   margin: 2% 0;
-  height: 220px;
+  height: 200px;
 }
 
 .container__top__previous-show-time {
