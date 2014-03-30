@@ -1,6 +1,6 @@
 // input container
 .container__inputs {
-  width: 97%;
+  width: 98%;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -25,7 +25,7 @@ input {
   height: 2em;
   width: 530px;
   float: left;
-  padding: 0 3%;
+  padding: 0 2%;
   position: relative;
   z-index: 0;
   @include transition-color;
@@ -75,7 +75,7 @@ input:focus {
 .seasons {
   float: left;
   width: $space * 3.1;
-  padding-right: 1%;
+  padding-right: 0;
   border-left: solid 1px rgba(255,255,255,.2);
 }
 
