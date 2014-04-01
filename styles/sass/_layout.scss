@@ -1,3 +1,10 @@
+// downtime
+.downtime {
+  z-index: 100;
+  position: relative;
+  top: 10px;
+}
+
 // bg image of site (if found)
 .bg {
   position: fixed;
