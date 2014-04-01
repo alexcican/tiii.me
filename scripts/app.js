@@ -3428,7 +3428,7 @@ var nrEpisodes = 0,
   nrSeasons = 0,
   runtime = 0,
   selectedTVshow;
-
+// 78c0761c9409a61cf88e675687d6f791
 $(".tvshow").select2({
   placeholder: "Type in a TV show",
   multiple: true,
@@ -3440,7 +3440,7 @@ $(".tvshow").select2({
     var value = $(".select2-input").val();
     $.ajax ({
       type: "GET",
-      url: 'http://api.trakt.tv/search/shows.json/78c0761c9409a61cf88e675687d6f791/'+ value +'/9/seasons/',
+      url: 'http://api.trakt.tv/search/shows.json/11bccf3da1efae6cd34781d1deeea62b/'+ value +'/9/seasons/',
       // url: 'data.json',
       dataType: "jsonp",
       json: "callbackname",
