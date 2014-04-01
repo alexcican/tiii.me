@@ -3440,7 +3440,7 @@ $(".tvshow").select2({
     var value = $(".select2-input").val();
     $.ajax ({
       type: "GET",
-      // url: 'http://api.trakt.tv/search/shows.json/11bccf3da1efae6cd34781d1deeea62b/'+ value +'/9/seasons/',
+      url: 'http://api.trakt.tv/search/shows.json/78c0761c9409a61cf88e675687d6f791/'+ value +'/1/seasons/',
       // url: 'data.json',
       dataType: "jsonp",
       json: "callbackname",
