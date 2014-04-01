@@ -17,7 +17,7 @@ $(".tvshow").select2({
     var value = $(".select2-input").val();
     $.ajax ({
       type: "GET",
-      url: 'http://api.trakt.tv/search/shows.json/11bccf3da1efae6cd34781d1deeea62b/'+ value +'/9/seasons/',
+      // url: 'http://api.trakt.tv/search/shows.json/11bccf3da1efae6cd34781d1deeea62b/'+ value +'/9/seasons/',
       // url: 'data.json',
       dataType: "jsonp",
       json: "callbackname",
