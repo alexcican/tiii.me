@@ -137,8 +137,16 @@ $('.tvshow').change(function() {
         episodes = selectedTVshow[0].episodes;
         runtime = selectedTVshow[0].runtime;
 
+        // if poster is empty, show default placeholder
+        var poster = null;
+        if (selectedTVshow[0].poster == null) {
+          poster = 'http://slurm.trakt.us/images/poster-dark.jpg';
+        } else {
+          poster = 'http://image.tmdb.org/t/p/w342' + selectedTVshow[0].poster;
+        }
+
         // prepend the <li> with TV show and hide it for now
-        $('.container__list-of-shows').prepend('<li class="show-to-add  visuallyhidden"><a href="#" class="btn icon-close  js-remove-item" title="Remove this TV show"></a><img src="http://image.tmdb.org/t/p/w342/' + selectedTVshow[0].poster + '" alt="' + selectedTVshow[0].text + '" /><div class="container__list-of-shows__info"><span class="container__list-of-shows__info__title" title="TV show title">' + selectedTVshow[0].text +'</span><span class="container__list-of-shows__info__seasons" title="Nr. of seasons"></span><span class="container__list-of-shows__info__wasted-time  visuallyhidden"></span></div></li>');
+        $('.container__list-of-shows').prepend('<li class="show-to-add  visuallyhidden"><a href="#" class="btn icon-close  js-remove-item" title="Remove this TV show"></a><img src="' + poster + '" alt="' + selectedTVshow[0].text + '" /><div class="container__list-of-shows__info"><span class="container__list-of-shows__info__title" title="TV show title">' + selectedTVshow[0].text +'</span><span class="container__list-of-shows__info__seasons" title="Nr. of seasons"></span><span class="container__list-of-shows__info__wasted-time  visuallyhidden"></span></div></li>');
 
         // adds value of TV show text to input
         $('input').val(selectedTVshow[0].text);
