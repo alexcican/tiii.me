@@ -17,7 +17,7 @@ $(".tvshow").select2({
     var value = $(".select2-input").val();
     $.ajax ({
       type: "GET",
-      url: 'http://private-350a4-themoviedb.apiary.io/3/search/tv?api_key=d56e51fb77b081a9cb5192eaaa7823ad&query=' + value,
+      url: 'http://api.themoviedb.org/3/search/tv?api_key=d56e51fb77b081a9cb5192eaaa7823ad&query=' + value,
       // url: 'data.json',
       dataType: "jsonp",
       json: "callbackname",
@@ -29,7 +29,7 @@ $(".tvshow").select2({
               console.log(show.id);
               $.ajax ({
                 type: "GET",
-                url: 'http://private-350a4-themoviedb.apiary.io/3/tv/' + show.id + '?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
+                url: 'http://api.themoviedb.org/3/tv/' + show.id + '?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
                 // url: 'data.json',
                 dataType: "json",
                 json: "callbackname",
