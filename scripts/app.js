@@ -3449,7 +3449,6 @@ $(".tvshow").select2({
         $.each(result, function (i, shows) {
           $.each(shows, function(i, show) {
             if (i < 2) {
-              console.log(show.id);
               $.ajax ({
                 type: "GET",
                 url: 'http://api.themoviedb.org/3/tv/' + show.id + '?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
@@ -3560,7 +3559,6 @@ $('.tvshow').change(function() {
         totalSeasons = selectedTVshow[0].seasons;
         episodes = selectedTVshow[0].episodes;
         runtime = selectedTVshow[0].runtime;
-        console.log(totalSeasons + 'xx' + episodes + '==' + runtime);
 
         // prepend the <li> with TV show and hide it for now
         $('.container__list-of-shows').prepend('<li class="show-to-add  visuallyhidden"><a href="#" class="btn icon-close  js-remove-item" title="Remove this TV show"></a><img src="http://image.tmdb.org/t/p/w342/' + selectedTVshow[0].poster + '" alt="' + selectedTVshow[0].text + '" /><div class="container__list-of-shows__info"><span class="container__list-of-shows__info__title" title="TV show title">' + selectedTVshow[0].text +'</span><span class="container__list-of-shows__info__seasons" title="Nr. of seasons"></span><span class="container__list-of-shows__info__wasted-time  visuallyhidden"></span></div></li>');
