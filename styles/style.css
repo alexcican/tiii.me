@@ -1809,8 +1809,8 @@ a:focus {
   right: .5%;
   top: 1%;
   padding: 32px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
-  opacity: 0.3;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
   text-decoration: none !important;
   z-index: 1;
 }
