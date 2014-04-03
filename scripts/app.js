@@ -3491,7 +3491,7 @@ $(".tvshow").select2({
           console.log('error');
         }
       })
-    }, 1000);
+    }, 3000);
   }
 })
 
