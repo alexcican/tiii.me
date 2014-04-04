@@ -1341,7 +1341,6 @@ a:focus {
 
 .noScroll {
   overflow: hidden;
-  margin-right: 14px;
 }
 
 .hide {
@@ -2440,6 +2439,10 @@ input, .container__top__hours-wasted {
     margin-top: 7px;
   }
 }
+.windows .noScroll {
+  margin-right: 14px;
+}
+
 .windows .sharing-link__icon {
   line-height: 51.2px;
 }

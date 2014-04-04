@@ -1,3 +1,8 @@
+// move content to the right because of scrollbar in Windows
+.windows .noScroll {
+  margin-right: 14px;
+}
+
 // centres the twitter icon vertically for Windows
 .windows .sharing-link__icon {
   line-height: $space * 1.6;
