@@ -34,6 +34,11 @@ input {
   }
 }
 
+// remove X from input for MS
+input::-ms-clear {
+  display: none;
+}
+
 // on focus change styling of borders
 input:focus {
   color: $text;
@@ -130,7 +135,7 @@ input[type=number]::-webkit-inner-spin-button:after {
 
 
 // when landscape iPad cuts off "w" from "show"
-@media all and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .tvshow {
     font-size: .96em;
   }

@@ -1,3 +1,11 @@
+// DETECT IF WINDOWS FOR STYLING
+if (navigator.userAgent.indexOf('Windows NT 6.1') > 0)
+  $('body').addClass('windows');
+
+
+
+
+
 // LOCALSTORAGE FUNCTIONS
 
 // check to see if supports LocalStorage
