@@ -3450,7 +3450,7 @@ $(".tvshow").select2({
     delay(function(){
 
       var data = {results: []};
-      var value = $(".select2-input").val();
+      var value = $(".select2-input").val().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, ' ');
 
       $.ajax ({
         type: "GET",
