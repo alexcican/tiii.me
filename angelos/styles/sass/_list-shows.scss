@@ -1,0 +1,110 @@
+// container with list of shows
+.container__list-of-shows {
+  margin-top: 7%;
+  text-align:center;
+}
+
+
+
+// each movie positioning
+.container__list-of-shows li {
+  display: inline-block;
+  width: 20%;
+  max-width: 300px;
+  overflow: hidden;
+  margin-bottom: -8px; // pixel perfect precision
+  padding: 0;
+  position: relative;
+  @include backface-visibility;
+  @include transition(filter .2s, opacity .2s);
+  @include hardware-acceleratation;
+}
+
+// on hover TV show faint sign of X for remove show
+.container__list-of-shows li:hover > .js-remove-item {
+  @include opacity(.6);
+}
+
+// on hover TV show and X icon show full opacity of icon
+.container__list-of-shows li:hover > .js-remove-item:hover, .container__list-of-shows li > .js-remove-item:focus {
+  @include opacity(1);
+  outline: none;
+}
+
+
+
+// blur and reduce opacity so that dropdown is easier to read
+.container__list-of-shows li.blur-and-reduce-opacity {
+  -webkit-filter: blur(5px);
+  opacity: .4;
+}
+
+
+
+// fix bug of showing width of hidden element and pushing other elements left/right
+.show-to-add {
+  margin-left: -4px;
+}
+
+
+
+// close X icon styling
+.js-remove-item {
+  @include opacity(0);
+  font-size: 2em;
+  line-height: 1;
+  position: absolute;
+  width: 15%;
+  padding: $space / 2;
+  text-align: right;
+  top: 0;
+  right: 0;
+  text-decoration: none !important;
+  z-index: 1;
+  @include transitions;
+  @include hardware-acceleratation;
+}
+
+
+
+// TV shows cover images fit container
+.container__list-of-shows img {
+  max-width: 100%;
+  margin-bottom: -7px;  // pixel perfect precision
+}
+
+
+
+// text of each TV show
+.container__list-of-shows__info {
+  font-size: 1.125em;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 5px 0;
+  clear: both;
+  // background: rgba(0,0,0,.4);
+  @include background-image(linear-gradient(transparent, rgba(0,0,0,.5), rgba(0,0,0,.7)));
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+// title of TV show in info container
+.container__list-of-shows__info__title {
+  float: left;
+  margin-left: 5%;
+  width: 75%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+// # of seasons in info container
+.container__list-of-shows__info__seasons {
+  float: right;
+  margin-right: 5%;
+}

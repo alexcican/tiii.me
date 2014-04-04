@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en-gb">
+
+<head>
+  <title>Calculate your total time spent watching TV shows</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon-precomposed" href="./images/apple-touch-icon.png">
+  <meta name="author" content="https://plus.google.com/116801469202683881648/" />
+
+  <meta property="fb:app_id" content="292523134239015" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://tiii.me" />
+  <meta property="og:title" content="Calculate your total time spent watching TV shows" />
+  <meta property="og:site_name" content="Tiii.me" />
+  <meta property="og:description" content="Calculate your total time spent watching TV shows" />
+  <meta property="og:image" content="http://tiii.me/images/cover.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@alexcican" />
+  <meta name="twitter:creator" content="@alexcican" />
+  <meta name="twitter:url" content="http://tiii.me" />
+  <meta name="twitter:title" content="Tiii.me" />
+  <meta name="twitter:description" content="Calculate your total time spent watching TV shows" />
+  <meta name="twitter:image:src" content="http://tiii.me/images/cover.jpg" />
+
+  <meta name="viewport" content="width=device-width, minimal-ui" />
+  <link rel="stylesheet" type="text/css" href="styles/style.min.css" />
+  <link rel="canonical" href="http://tiii.me" />
+</head>
+<body>
+  <!-- <p class="downtime">The API for TV shows search is currently down due to too much traffic. I apologise and I can <a href="http://twitter.com/alexcican">notify you on Twitter</a> when it&rsquo;s back online. Thanks.</p> -->
+
+  <div class="container  container--small">
+    <div class="container__top">
+      <div class="result-container  visuallyhidden">
+        <a href="https://twitter.com/share?text=I’ve wasted time watching TV shows. Calculate your time:&url=http://tiii.me" class="sharing-link" title="Share result on Twitter">
+          <span class="sharing-link__text">Share</span>
+          <span class="sharing-link__icon"><span class="icon-twitter"></span></span>
+          <span class="sharing-link__text">Result</span>
+        </a>
+
+        <div class="container__top__previous-show-time"></div>
+
+        <div class="container__top__hours-wasted">
+          <div class="hours-wasted__days">
+            <span class="numbers" id="days">00</span>
+            <span class="description">days</span>
+          </div>
+          <div class="hours-wasted__hours">
+            <span class="numbers" id="hours">00</span>
+            <span class="description">hours</span>
+          </div>
+          <div class="hours-wasted__minutes">
+            <span class="numbers" id="minutes">00</span>
+            <span class="description">minutes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <form class="container__inputs  cf">
+      <input type="text" class="tvshow" placeholder="Type-in a TV show" title="Name of a TV show" />
+      <input type="number" class="seasons" min="1" max="26" placeholder="#" maxlength="2" required title="Number of seasons you’ve watched" />
+      <button class="icon-arrow-right  btn  submit  hiding" title="Add this TV show (Enter)"></button>
+    </form>
+
+
+    <ul class="container__list-of-shows"></ul>
+  </div>
+
+
+  <div class="about">
+    <a href="#" class="about__icon  btn  icon-question  js-show-modal" title="About Tiii.me (Esc)"></a>
+
+    <div class="about__content  hide">
+      <a href="#" tabindex="-1" class="about__icon  btn icon-close  visuallyhidden  js-hide-modal" title="Close this window (Esc)"></a>
+
+      <div class="about__content__inner">
+        <h2>Calculate your total tiii.me spent watching TV shows</h2>
+        <h3>Concept, design, and code by <a href="http://alexcican.com" tabindex="-1">Alex Cican</a>.</h3>
+        <p>Fork this project on <a href="https://github.com/alexcican/tiii.me" rel="nofollow" tabindex="-1">GitHub</a>.</p><br/>
+        <small>TV shows API by <a href="http://trakt.tv/" rel="nofollow" tabindex="-1" title="Trakt platform">Trakt</a>. Autocomplete plugin by <a href="https://github.com/ivaynberg/select2" rel="nofollow" tabindex="-1" title="Select2 plugin">Igor Vaynberg</a>. <a href="#" class="reset-local-storage" title="All saved data will be deleted">Reset all data</a>.</small>
+        <!-- <small>TV shows API by <a href="https://www.themoviedb.org/" rel="nofollow" tabindex="-1" title="The Movie Database">The Movie Database</a>. Autocomplete plugin by <a href="https://github.com/ivaynberg/select2" rel="nofollow" tabindex="-1" title="Select2 plugin">Igor Vaynberg</a>. <a href="#" class="reset-local-storage" title="All saved data will be deleted">Reset all data</a>.</small> -->
+        <small>How it works: # of seasons &times; # of episodes per season &times; runtime of episode = total for 1 TV show. Repeat for more TV shows = total time.</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adds TV show background image to site -->
+  <span class="bg"></span>
+
+
+
+  <!-- JS scripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>

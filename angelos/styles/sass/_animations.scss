@@ -1,0 +1,250 @@
+// keyframes mixin
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-o-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+// animation mixin
+@mixin animation ($delay, $duration, $animation) {
+  -webkit-animation-delay: $delay;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-name: $animation;
+  -webkit-animation-fill-mode: forwards;
+  // -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: cubic-bezier(.33,1.02,.18,1.4);
+
+  -moz-animation-delay: $delay;
+  -moz-animation-duration: $duration;
+  -moz-animation-name: $animation;
+  -moz-animation-fill-mode: forwards;
+  -moz-animation-timing-function: cubic-bezier(.33,1.02,.18,1.4);
+
+  -o-animation-delay: $delay;
+  -o-animation-duration: $duration;
+  -o-animation-name: $animation;
+  -o-animation-fill-mode: forwards;
+  -o-animation-timing-function: cubic-bezier(.33,1.02,.18,1.4);
+
+  -ms-animation-delay: $delay;
+  -ms-animation-duration: $duration;
+  -ms-animation-name: $animation;
+  -ms-animation-fill-mode: forwards;
+  -ms-animation-timing-function: cubic-bezier(.33,1.02,.18,1.4);
+
+  animation-delay: $delay;
+  animation-duration: $duration;
+  animation-name: $animation;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(.33,1.02,.18,1.4);
+}
+
+
+
+
+// TRANSITIONS
+
+// adds transition
+@mixin transitions {
+  @include transition(all .2s ease-in-out);
+}
+
+
+
+// adds transition for opacity only
+@mixin transition-opacity {
+  @include transition(opacity .2s ease-in-out);
+}
+
+
+
+// mixin for animations
+@mixin transition-color {
+  @include transition(color .2s ease-in-out, opacity .2s ease-in-out);
+}
+
+
+
+
+
+// ANIMATIONS
+
+// animates to come down (page elements)
+@include keyframes(moveDown) {
+  0%   {@include transform(translate(0,-10%)); @include opacity(0);}
+  100% {@include transform(translate(0,0)); @include opacity(1);}
+}
+
+// animates to fade up (results container)
+@include keyframes(fadeUp) {
+  0%   {@include transform(translate(0,0)); @include opacity(1);}
+  100% {@include transform(translate(0,-10%)); @include opacity(0);}
+}
+
+// animates to come up (modal content)
+@include keyframes(moveUp) {
+  0%   {@include transform(translate(0,100%)); @include opacity(0);}
+  100% {@include transform(translate(0,0)); @include opacity(1);}
+}
+
+// animates to move centre-down (modal content)
+@include keyframes(moveDownDown) {
+  0%   {@include transform(translate(0,0)); @include opacity(1);}
+  100% {@include transform(translate(0,50%)); @include opacity(0);}
+}
+
+// animates to move to the right (submit button)
+@include keyframes(moveRight) {
+  0%   {@include transform(translate(-30%,0)); @include opacity(0);}
+  100% {@include transform(translate(0,0)); @include opacity(1);}
+}
+
+// animates to move to the left (submit button)
+@include keyframes(moveLeft) {
+  0%   {@include transform(translate(0,0)); @include opacity(1);}
+  100% {@include transform(translate(-30%,0)); @include opacity(0);}
+}
+
+
+
+// fades out
+@include keyframes(fadeOut) {
+  0%   {@include opacity(0);}
+  100% {@include opacity(1);}
+}
+
+
+
+// removing items moves them away
+@include keyframes(remove) {
+  0%   {@include opacity(0); width: 20%;}
+  100% {@include opacity(1); width: 3px;}
+}
+
+// adding items creates them
+@include keyframes(add) {
+  0%   {@include opacity(0); width: 3px;}
+  100% {@include opacity(1); width: 20%;}
+}
+
+
+
+
+
+// ELEMENTS THAT HAVE ANIMATIONS
+
+// top container (info/results)
+.container__top, .result-container {
+  @include animation(0, .3s, moveDown);
+}
+
+// when hiding the top container
+.container__top.hiding {
+  @include animation(0, .3s, fadeUp);
+}
+
+// TV show input container
+.container__inputs {
+  @include animation(.15s, .3s, moveDown);
+}
+
+// list of movies
+.container__list-of-movies {
+  @include animation(.4s, .3s, moveDown);
+}
+
+// moves up the content
+.show.container__top__previous-show-time {
+  @include animation(0, .3s, moveDown);
+}
+
+// moves down down the content
+.hiding.container__top__previous-show-time {
+  @include animation(0, .3s, fadeUp);
+}
+
+
+
+// shows submit button (because comes from display: none)
+// but in order to animate need following properties
+.showing.submit {
+  display: inline-block;
+  @include opacity (0);
+}
+
+// hiding
+.hiding.submit {
+  display: none;
+  @include animation(0, .3s, moveLeft);
+}
+
+// shows submit button
+.show.submit {
+  display: inline-block;
+  @include animation(0, .3s, moveRight);
+}
+
+
+
+// shows submit button (because comes from display: none)
+.showing.show-to-add {
+  display: inline-block;
+  width: 3px !important; // browser bug (0px shifts other TV shows)
+  @include opacity (0);
+}
+
+// shows submit button
+.show.show-to-add {
+  @include animation(0, .3s, add);
+}
+
+
+
+// hidden by default
+.about__content__inner {
+  @include opacity(0);
+}
+
+// moves up the content
+.show .about__content__inner {
+  @include animation(0, .3s, moveUp);
+}
+
+// moves down down the content
+.hiding .about__content__inner {
+  @include animation(0, .15s, moveDownDown);
+}
+
+
+
+// removes TV show from list
+.remove-tv-show {
+  @include opacity(0);
+  @include animation(0, .5s, remove);
+}
+
+
+
+// mimic a button
+.btn {
+  @include transitions;
+}
+
+
+
+// on active mimic a button
+.btn:active {
+  @include transform(scale(.8));
+}
