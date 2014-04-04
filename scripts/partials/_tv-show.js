@@ -69,7 +69,7 @@ $(".tvshow").select2({
           console.log('error');
         }
       })
-    }, 3000);
+    }, 1000);
   }
 })
 
