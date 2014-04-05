@@ -3462,7 +3462,7 @@ $(".tvshow").select2({
 
       $.ajax ({
         type: "GET",
-        url: 'http://api.trakt.tv/search/shows.json/11bccf3da1efae6cd34781d1deeea/'+ value +'/1/seasons/',
+        url: 'http://api.trakt.tv/search/shows.json/11bccf3da1efae6cd34781d1deeea/'+ value +'/3/seasons/',
         // url: 'http://android.hd2roms.com/tiiime/trackapi.cfm?sf=' + value,
         // url: 'data.json',
         dataType: "jsonp",
@@ -3500,7 +3500,7 @@ $(".tvshow").select2({
           console.log('error');
         }
       })
-    }, 1000);
+    }, 800);
   }
 })
 
