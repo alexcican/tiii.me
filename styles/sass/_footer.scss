@@ -1,0 +1,35 @@
+// thank you link, donations
+.thanks-obama {
+  text-align: right;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  z-index: 1;
+  @include opacity(.5);
+  @include transitions;
+  cursor: default;
+  padding: 5px;
+  display: block;
+  line-height: 1.6;
+}
+
+// small screens, move to footer
+@media all and (max-width: 640px) {
+  .thanks-obama {
+    position: relative;
+    text-align: center;
+    margin-top: 1em;
+  }
+}
+
+.thanks-obama:hover {
+  @include opacity(1);
+}
+
+.thanks-obama .no-link-styling {
+  display: block;
+}
+
+.thanks-obama .no-link-styling a {
+  color: inherit;
+}
