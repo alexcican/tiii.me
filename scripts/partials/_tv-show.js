@@ -5,8 +5,6 @@ var nrEpisodes = 0,
   nrSeasons = 0,
   runtime = 0,
   selectedTVshow;
-// 78c0761c9409a61cf88e675687d6f791
-// 11bccf3da1efae6cd34781d1deeea
 
 var delay = (function(){
   var timer = 0;
@@ -31,9 +29,8 @@ $(".tvshow").select2({
 
       $.ajax ({
         type: "GET",
+        // CHANGE THE TRAKT API KEY BELOW TO YOUR OWN KEY. GET ONE HERE: https://trakt.tv/join
         url: 'http://api.trakt.tv/search/shows.json/11bccf3da1efae6cd34781d1deeea/'+ value +'/3/seasons/',
-        // url: 'http://android.hd2roms.com/tiiime/trackapi.cfm?sf=' + value,
-        // url: 'data.json',
         dataType: "jsonp",
         json: "callbackname",
         crossDomain : true,
