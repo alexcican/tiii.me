@@ -30,7 +30,8 @@ $(".tvshow").select2({
       $.ajax ({
         type: "GET",
         // CHANGE THE TRAKT API KEY BELOW TO YOUR OWN KEY. GET ONE HERE: https://trakt.tv/join
-        url: 'http://api.trakt.tv/search/shows.json/78c0761c9409a61cf88e675687d6f790/'+ value +'/5/seasons/',
+        // **OBSOLETE** url: 'http://api.trakt.tv/search/shows.json/78c0761c9409a61cf88e675687d6f790/'+ value +'/5/seasons/',
+        url: 'http://api.trakt.tv/search/shows.json/78c0761c9409a61cf88e675687d6f790?query=' + value + '&limit=5&seasons=true',
         dataType: "jsonp",
         json: "callbackname",
         crossDomain : true,
