@@ -3451,54 +3451,57 @@ $(".tvshow").select2({
   multiple: true,
   maximumSelectionSize: 1,
   minimumInputLength: 2,
-  maximumInputLength: 25,
+  maximumInputLength: 20,
   query: function(query) {
     delay(function(){
-
       var data = {results: []};
-      var value = $(".select2-input").val().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, ' ');
+      var value = $(".select2-input").val();
 
       $.ajax ({
         type: "GET",
-        // CHANGE THE TRAKT API KEY BELOW TO YOUR OWN KEY. GET ONE HERE: https://trakt.tv/join
-        // **OBSOLETE** url: 'http://api.trakt.tv/search/shows.json/78c0761c9409a61cf88e675687d6f790/'+ value +'/5/seasons/',
-        url: 'http://api.trakt.tv/search/shows.json/78c0761c9409a61cf88e675687d6f790?query=' + value + '&limit=5&seasons=true',
+        url: 'http://api.themoviedb.org/3/search/tv?api_key=d56e51fb77b081a9cb5192eaaa7823ad&query=' + value,
+        // url: 'data.json',
         dataType: "jsonp",
         json: "callbackname",
         crossDomain : true,
         success: function (result) {
-          $.each(result, function (i, show) {
+          $.each(result, function (i, shows) {
+            $.each(shows, function(i, show) {
+              if (i < 2) {
+                $.ajax ({
+                  type: "GET",
+                  url: 'http://api.themoviedb.org/3/tv/' + show.id + '?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
+                  // url: 'data.json',
+                  dataType: "jsonp",
+                  json: "callbackname",
+                  crossDomain : true,
+                  success: function (tvShow) {
+                    // runtime shows min max time / divide
+                    // var runtime = tvShow.episode_run_time.reduce(function(a, b) { return a + b; }, 0) / tvShow.episode_run_time.length
 
-            // reset counter for each new show
-            nrSeasons = 0; nrEpisodes = 0;
+                    // write everything in an array
+                    if (tvShow.number_of_seasons == null) {
+                      data.results.push({id: tvShow.id, text: tvShow.original_name, runtime: tvShow.episode_run_time[0], poster: tvShow.poster_path, bg: tvShow.backdrop_path, seasons: 1, episodes: tvShow.number_of_episodes });
+                    } else {
+                      data.results.push({id: tvShow.id, text: tvShow.original_name, runtime: tvShow.episode_run_time[0], poster: tvShow.poster_path, bg: tvShow.backdrop_path, seasons: tvShow.number_of_seasons, episodes: tvShow.number_of_episodes });
+                    }
 
-            // loop through seasons and increase seasons counter
-            $.each(show.seasons, function (i, seasons) {
-              if (seasons.season > 0) {
-                nrSeasons++;
+                    selectedTVshow = tvShow.original_name;
+                    results = data.results;
 
-                // loop through episodes and increase episodes counter
-                $.each(seasons.episodes, function () {
-                  nrEpisodes++;
+                    // return array
+                    query.callback(data);
+                  }
                 })
               }
             })
-
-            // write everything in an array
-            data.results.push({id: this.tvdb_id, text: this.title, runtime: this.runtime, poster: this.images.poster, bg: this.images.fanart, seasons: nrSeasons, episodes: nrEpisodes });
-            // console.log(this.title);
-            selectedTVshow = this.title;
-            // results = data.results;
-
-            // return array
-            query.callback(data);
           })
         },
         error: function (data) {
-          console.log('error');
+          // console.log('error');
         }
       })
-    }, 0);
+    }, 1000 );
   }
 })
 
@@ -3517,13 +3520,13 @@ var totalSeasons = 0,
 // on input change detect, read TV show selected, and add it to the list
 $('.tvshow').change(function() {
   selectedTVshow = jQuery.parseJSON(JSON.stringify($('.tvshow').select2('data')));
-  // console.log(selectedTVshow);
+  console.log(selectedTVshow);
 
 
   // removes TV shows that were appended (selected from dropdown) but eventually not added (submitted)
   $('.show-to-add').remove();
 
-  if (selectedTVshow[0].seasons > 0) {
+  if (selectedTVshow[0].seasons >= 0 && selectedTVshow[0].runtime >= 0) {
     // if selected TV show exists
     if (typeof(selectedTVshow[0]) != "undefined") {
 
@@ -3554,11 +3557,11 @@ $('.tvshow').change(function() {
         // new show, add it
         // if background of TV show selected is different from current bg image replace it
         var backgroundSource = $('.bg').css('background-image'),
-            TVshowBackground = 'url(' + selectedTVshow[0].bg + ')';
+            TVshowBackground = 'url(http://image.tmdb.org/t/p/original/' + selectedTVshow[0].bg + ')';
 
         if (TVshowBackground != backgroundSource) {
           var image = new Image();
-          image.src = selectedTVshow[0].bg;
+          image.src = 'http://image.tmdb.org/t/p/original/' + selectedTVshow[0].bg;
 
           // allow time to preload image before showing
           setTimeout(function(){
@@ -3576,8 +3579,16 @@ $('.tvshow').change(function() {
         episodes = selectedTVshow[0].episodes;
         runtime = selectedTVshow[0].runtime;
 
+        // if poster is empty, show default placeholder
+        var poster = null;
+        if (selectedTVshow[0].poster == null) {
+          poster = 'http://slurm.trakt.us/images/poster-dark.jpg';
+        } else {
+          poster = 'http://image.tmdb.org/t/p/w342' + selectedTVshow[0].poster;
+        }
+
         // prepend the <li> with TV show and hide it for now
-        $('.container__list-of-shows').prepend('<li class="show-to-add  visuallyhidden"><a href="#" class="btn icon-close  js-remove-item" title="Remove this TV show"></a><img src="' + selectedTVshow[0].poster + '" alt="' + selectedTVshow[0].text + '" /><div class="container__list-of-shows__info"><span class="container__list-of-shows__info__title" title="TV show title">' + selectedTVshow[0].text +'</span><span class="container__list-of-shows__info__seasons" title="Nr. of seasons"></span><span class="container__list-of-shows__info__wasted-time  visuallyhidden"></span></div></li>');
+        $('.container__list-of-shows').prepend('<li class="show-to-add  visuallyhidden"><a href="#" class="btn icon-close  js-remove-item" title="Remove this TV show"></a><img src="' + poster + '" alt="' + selectedTVshow[0].text + '" /><div class="container__list-of-shows__info"><span class="container__list-of-shows__info__title" title="TV show title">' + selectedTVshow[0].text +'</span><span class="container__list-of-shows__info__seasons" title="Nr. of seasons"></span><span class="container__list-of-shows__info__wasted-time  visuallyhidden"></span></div></li>');
 
         // adds value of TV show text to input
         $('input').val(selectedTVshow[0].text);

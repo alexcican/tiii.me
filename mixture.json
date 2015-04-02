@@ -1,12 +1,16 @@
 {
-  "convertHtmlOutput": null,
+  "convertHtml": {
+    "relativePaths": false
+  },
   "customRubyPath": null,
   "debug": false,
   "domain": null,
   "followLeader": false,
   "lintScripts": false,
   "modelSource": null,
-  "preprocessorLocations": "/",
+  "preprocessorLocations": [
+    "/"
+  ],
   "preprocessorScriptOutput": "/scripts/",
   "preprocessorStyleOutput": "/",
   "projectDescription": "How much time you’ve wasted",
