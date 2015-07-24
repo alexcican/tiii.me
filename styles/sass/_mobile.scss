@@ -1,6 +1,6 @@
-@media all and (max-width: 320px) {
+@media all and (max-width: 620px) {
   body {
-    font-size: .7em;
+    font-size: .9em;
   }
 
   .container__top, .container__info {
@@ -9,10 +9,7 @@
   }
 
   .about__icon {
-    font-size: 2em;
-    right: 0;
-    padding: 12px;
-    top: 1%;
+    display: none;
   }
 
   .sharing-link {
@@ -40,11 +37,10 @@
 
 
 
-  input {
+  input, .tvshow, .select2-input {
     font-weight: 300;
-    font-size: 2.4em;
+    font-size: 2em !important;
   }
-
 
 
   .select2-results .select2-no-results, .select2-results .select2-searching, .select2-results .select2-selection-limit {
@@ -53,7 +49,7 @@
   }
 
   .select2-container {
-    width: 76%;
+    width: 100%;
     margin-right: -3%;
   }
 
