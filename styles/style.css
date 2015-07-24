@@ -1704,6 +1704,13 @@ a:focus {
   z-index: -10;
 }
 
+.seasons-description {
+  position: absolute;
+  bottom: -25px;
+  right: 148px;
+  text-transform: capitalize !important;
+}
+
 .container--small {
   position: relative;
   z-index: 1;

@@ -21,6 +21,15 @@ $('input, .seasons').focus(function() {
 
 
 
+// add description upon seasons input focus
+$('.seasons').focus(function() {
+  $('.seasons-description').removeClass('visuallyhidden');
+}).blur(function() {
+  $('.seasons-description').addClass('visuallyhidden');
+})
+
+
+
 // disables text input for season number (only numerical)
 $('.seasons').keydown(function(e) {
   var co = e.keyCode
