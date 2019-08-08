@@ -175,21 +175,21 @@ function updateClock(days, hours, minutes) {
 
   // tweet link text change
   if (days < 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + hours + ' hours and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + hours + ' hours and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if (days == 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' day, ' + hours + ' hours, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' day, ' + hours + ' hours, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if (hours < 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if (hours == 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hour, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hour, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if (minutes < 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days and ' + hours + ' hours of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days and ' + hours + ' hours of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if (minutes == 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hours, and ' + minutes + ' minute of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hours, and ' + minutes + ' minute of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if ((hours < 01) && (minutes < 01)) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hours, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hours, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   }
 }
 
