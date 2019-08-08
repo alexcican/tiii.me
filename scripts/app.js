@@ -75,7 +75,7 @@ setTimeout(function() {
 
 
 // show witty console message
-console.log('Yo!\nThis app was created by Alex Cican: http://acn.io\nQuestions? alex@alexcican.com');
+console.log('Yo!\nThis app was created by Alex Cican: https://alexcican.com\nQuestions? alex@alexcican.com');
 /*
 Copyright 2012 Igor Vaynberg
 
@@ -88,8 +88,8 @@ License or the GPL License.
 
 You may obtain a copy of the Apache License and the GPL License at:
 
-    http://www.apache.org/licenses/LICENSE-2.0
-    http://www.gnu.org/licenses/gpl-2.0.html
+    https://www.apache.org/licenses/LICENSE-2.0
+    https://www.gnu.org/licenses/gpl-2.0.html
 
 Unless required by applicable law or agreed to in writing, software distributed under the
 Apache License or the GPL Licesnse is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -3468,7 +3468,7 @@ $(".tvshow").select2({
 
       $.ajax ({
         type: "GET",
-        url: 'http://api.themoviedb.org/3/search/tv?api_key=d56e51fb77b081a9cb5192eaaa7823ad&query=' + value,
+        url: 'https://api.themoviedb.org/3/search/tv?api_key=d56e51fb77b081a9cb5192eaaa7823ad&query=' + value,
         // url: 'data.json',
         dataType: "jsonp",
         json: "callbackname",
@@ -3479,7 +3479,7 @@ $(".tvshow").select2({
               if (i < 2) {
                 $.ajax ({
                   type: "GET",
-                  url: 'http://api.themoviedb.org/3/tv/' + show.id + '?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
+                  url: 'https://api.themoviedb.org/3/tv/' + show.id + '?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
                   // url: 'data.json',
                   dataType: "jsonp",
                   json: "callbackname",
@@ -3566,11 +3566,11 @@ $('.tvshow').change(function() {
         // new show, add it
         // if background of TV show selected is different from current bg image replace it
         var backgroundSource = $('.bg').css('background-image'),
-            TVshowBackground = 'url(http://image.tmdb.org/t/p/original/' + selectedTVshow[0].bg + ')';
+            TVshowBackground = 'url(https://image.tmdb.org/t/p/original/' + selectedTVshow[0].bg + ')';
 
         if (TVshowBackground != backgroundSource) {
           var image = new Image();
-          image.src = 'http://image.tmdb.org/t/p/original/' + selectedTVshow[0].bg;
+          image.src = 'https://image.tmdb.org/t/p/original/' + selectedTVshow[0].bg;
 
           // allow time to preload image before showing
           setTimeout(function(){
@@ -3591,9 +3591,9 @@ $('.tvshow').change(function() {
         // if poster is empty, show default placeholder
         var poster = null;
         if (selectedTVshow[0].poster == null) {
-          poster = 'http://slurm.trakt.us/images/poster-dark.jpg';
+          poster = 'https://slurm.trakt.us/images/poster-dark.jpg';
         } else {
-          poster = 'http://image.tmdb.org/t/p/w342' + selectedTVshow[0].poster;
+          poster = 'https://image.tmdb.org/t/p/w342' + selectedTVshow[0].poster;
         }
 
         // prepend the <li> with TV show and hide it for now
@@ -3870,21 +3870,21 @@ function updateClock(days, hours, minutes) {
 
   // tweet link text change
   if (days < 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + hours + ' hours and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + hours + ' hours and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if (days == 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' day, ' + hours + ' hours, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' day, ' + hours + ' hours, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if (hours < 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if (hours == 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hour, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hour, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if (minutes < 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days and ' + hours + ' hours of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days and ' + hours + ' hours of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if (minutes == 01) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hours, and ' + minutes + ' minute of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hours, and ' + minutes + ' minute of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else if ((hours < 01) && (minutes < 01)) {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   } else {
-    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hours, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=http://tiii.me');
+    $('.sharing-link').attr('href', 'https://twitter.com/share?text=I’ve wasted ' + days + ' days, ' + hours + ' hours, and ' + minutes + ' minutes of my life watching TV shows. Calculate your time:&url=https://tiii.me');
   }
 }
 
