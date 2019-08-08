@@ -75,4 +75,4 @@ setTimeout(function() {
 
 
 // show witty console message
-console.log('Yo!\nThis app was created by Alex Cican: http://acn.io\nQuestions? alex@alexcican.com');
+console.log('Yo!\nThis app was created by Alex Cican: http://alexcican.com\nQuestions? alex@alexcican.com');
