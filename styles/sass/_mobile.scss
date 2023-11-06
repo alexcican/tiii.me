@@ -8,6 +8,11 @@
     height: 115px;
   }
 
+  .container__inputs {
+    width: 100%;
+    margin-top: 10%;
+  }
+
   .about__icon {
     display: none;
   }
@@ -39,7 +44,37 @@
 
   input, .tvshow, .select2-input {
     font-weight: 300;
-    font-size: 2em !important;
+    font-size: 1.44em !important;
+  }
+
+  .tvshow, .select2-input {
+    // width: 70%;
+  }
+
+  .seasons {
+    width: 15%;
+    padding-right: 0;
+    margin-right: -2%;
+    position: absolute;
+    top: 15%;
+    right: 10%;
+  }
+
+  .seasons-description {
+    position: absolute;
+    right: 10%;
+  }
+
+  .submit {
+    font-size: 3em;
+    margin-top: 9px;
+    position: absolute;
+    top: 0;
+    right: 0%;
+  }
+
+  .container__top__previous-show-time {
+    top: 20%;
   }
 
 
@@ -49,7 +84,7 @@
   }
 
   .select2-container {
-    width: 100%;
+    // width: 100%;
     margin-right: -3%;
   }
 
@@ -69,21 +104,6 @@
   .select2-results li {
     line-height: 26px;
   }
-
-
-
-  .seasons {
-    width: 15%;
-    padding-right: 0;
-    margin-right: -2%;
-  }
-
-  .submit {
-    font-size: 3em;
-    margin-top: 9px;
-  }
-
-
 
   .container__list-of-shows {
     margin-top: 12%;

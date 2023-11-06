@@ -22,7 +22,7 @@
 
 // on hover TV show faint sign of X for remove show
 .container__list-of-shows li:hover > .js-remove-item {
-  @include opacity(.6);
+  @include opacity(.8);
 }
 
 // on hover TV show and X icon show full opacity of icon
@@ -84,7 +84,7 @@
   padding: 5px 0;
   clear: both;
   // background: rgba(0,0,0,.4);
-  @include background-image(linear-gradient(transparent, rgba(0,0,0,.5), rgba(0,0,0,.7)));
+  @include background-image(linear-gradient(transparent, rgba(0,0,0,.7), rgba(0,0,0,.9)));
   -webkit-user-select: none;
   -moz-user-select: none;
   -o-user-select: none;
