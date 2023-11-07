@@ -17,7 +17,7 @@
   transition: filter 0.2s, opacity 0.2s;
   will-change: filter, opacity;
   @include transitions;
-  @include hardware-acceleratation;
+  @include hardware-acceleration;
 }
 
 // on hover TV show faint sign of X for remove show
@@ -56,7 +56,7 @@
   text-decoration: none !important;
   z-index: 1;
   @include transitions;
-  @include hardware-acceleratation;
+  @include hardware-acceleration;
 }
 
 // TV shows cover images fit container

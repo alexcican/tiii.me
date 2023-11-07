@@ -59,7 +59,7 @@ input, .container__top__hours-wasted {
   text-transform: uppercase;
   perspective: 150;
   @include transitions;
-  @include hardware-acceleratation;
+  @include hardware-acceleration;
 }
 
 // positions text
