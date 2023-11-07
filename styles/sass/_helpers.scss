@@ -1,6 +1,6 @@
 // for hardware acceleration
 @mixin hardware-acceleratation {
-  @include transform(translate3d(0,0,0));
+  transform: translate3d(0,0,0);
 }
 
 // disable scrolling
@@ -10,19 +10,19 @@
 
 // class that fades out elements
 .hide {
-  @include opacity(0);
+  opacity: 0;
 }
 
 // class that fades in elements
 .show {
-  @include opacity(1);
+  opacity: 1;
 }
 
 // class that hides and doesn't show elements
 .visuallyhidden {
   display: none;
   visibility: hidden;
-  @include opacity(0);
+  opacity: 0;
   position: absolute;
   top: 0;
   width: 3px !important; // browser bug (0px shifts other TV shows)

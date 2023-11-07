@@ -16,32 +16,25 @@
   background-image: url('../images/126.42.jpg');
   background-size: cover;
   background-position: 50% 0%;
-  @include filter(blur(5px));
-  @include opacity(.2);
-  @include transform(scale(1.1));
-  @include transition(all .3s);
-  @include hardware-acceleratation;
+  filter: blur(5px);
+  opacity: 0.2;
+  transform: scale(1.1);
+  transition: all 0.3s;
+  transform: translate3d(0,0,0);
+  will-change: transform;
 }
 
 // Firefox doesn't support blur; fade image more
 @-moz-document url-prefix() {
   .bg {
-    @include opacity(.08);
+    opacity: 0.08;
   }
 }
-
-
-
-
 
 // styling of container
 .container {
   width: 100%;
 }
-
-
-
-
 
 // result container (numbers & info) top padding
 .container__top, .container__info {
@@ -49,7 +42,7 @@
   height: 200px;
 }
 
-// styles temporary timer of previous show
+// styles temporary timer of the previous show
 .container__top__previous-show-time {
   position: absolute;
   top: 3.5em;
@@ -60,18 +53,14 @@
   letter-spacing: -.1em;
 }
 
-
-
-
-
 // positions the about icon
 .about__icon {
   font-size: 2em;
   position: absolute;
-  right: .5%;
+  right: 0.5%;
   top: 1%;
   padding: $space;
-  @include opacity(.5);
+  opacity: 0.5;
   text-decoration: none !important;
   z-index: 1;
 }
@@ -80,49 +69,35 @@
 .about__icon:hover,
 .about__icon:focus {
   color: $text;
-  @include opacity(1);
+  opacity: 1;
 }
-
-
-
-
 
 // about container overlay
 .about__content {
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0,0,0,.92);
+  background: rgba(0,0,0,0.92);
   width: 100%;
   height: 100%;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  @include transition-opacity;
-  @include transform(translate3d(0,0,0));
+  transition: opacity 0.3s;
+  transform: translate3d(0,0,0);
   z-index: 1;
 }
 
-// centre content
+// center content
 .about__content__inner {
   margin: 0 auto;
 }
 
 // hide content
 .about__content.hide {
-  @include opacity(0);
+  opacity: 0;
   z-index: -10;
 }
-
-
 
 // description under seasons
 .seasons-description {
@@ -131,8 +106,6 @@
   right: 148px;
   text-transform: capitalize !important;
 }
-
-
 
 // MODIFIERS
 
@@ -150,5 +123,5 @@
   height: 100%;
   width: 100%;
   z-index: -1;
-  background-color: rgba(0,0,0,.4);
+  background-color: rgba(0,0,0,0.4);
 }

@@ -242,7 +242,7 @@
 .select2-results .select2-result-label .select2-match {
     // text-decoration: underline;
     color: #fff;
-    // @include opacity(1);
+    // opacity: 1;
 }
 
 .select2-results .select2-highlighted {
@@ -269,7 +269,7 @@
 .select2-results .select2-searching,
 .select2-results .select2-selection-limit {
     display: list-item;
-    @include opacity(.2);
+    opacity: .2;
     font-weight: 200;
     text-align: left;
 }
@@ -357,7 +357,7 @@
 .select2-result-selectable .select2-match,
 .select2-result-unselectable .select2-match {
     // text-decoration: underline;
-    // @include opacity(1);
+    // opacity: 1;
 }
 
 .select2-offscreen, .select2-offscreen:focus {

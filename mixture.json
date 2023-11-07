@@ -12,7 +12,7 @@
     "/"
   ],
   "preprocessorScriptOutput": "/scripts/",
-  "preprocessorStyleOutput": "/",
+  "preprocessorStyleOutput": "/styles",
   "projectDescription": "How much time you’ve wasted",
   "projectName": "TimeWasted",
   "publishedId": null,
@@ -23,5 +23,5 @@
   "templateDefaultPage": "index",
   "templateDirectory": "templates",
   "type": "simple",
-  "useCompass": true
+  "useCompass": false
 }

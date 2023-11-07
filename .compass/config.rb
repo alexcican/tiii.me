@@ -15,5 +15,5 @@ javascripts_dir = "scripts/" # update to the path of your script files.
 
 line_comments = false
 
-cache = true
+cache = false
 
