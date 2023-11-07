@@ -3456,6 +3456,23 @@ var delay = (function(){
 })();
 
 
+
+var API_KEY = "d56e51fb77b081a9cb5192eaaa7823ad";
+
+function makeAjaxCall(type, url, callback) {
+  return $.ajax({
+    type: type,
+    url: url,
+    dataType: "jsonp",
+    json: "callbackname",
+    crossDomain : true,
+    success: callback,
+    error: function(data) {
+      console.log('An error occurred.');
+    }
+  });
+}
+
 $(".tvshow").select2({
   placeholder: "Type in a TV show",
   multiple: true,
@@ -3466,91 +3483,62 @@ $(".tvshow").select2({
     delay(function(){
       var data = {results: []};
       var value = $(".select2-input").val();
+      var showSearchUrl = 'https://api.themoviedb.org/3/search/tv?api_key=' + API_KEY + '&query=' + value;
 
-      $.ajax ({
-        type: "GET",
-        url: 'https://api.themoviedb.org/3/search/tv?api_key=d56e51fb77b081a9cb5192eaaa7823ad&query=' + value,
-        dataType: "jsonp",
-        json: "callbackname",
-        crossDomain : true,
-        success: function (result) {
-          $.each(result, function (i, shows) {
-            $.each(shows, function(i, show) {
-              if (i < 2) {
-                $.ajax ({
-                  type: "GET",
-                  url: 'https://api.themoviedb.org/3/tv/' + show.id + '?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
-                  dataType: "jsonp",
-                  json: "callbackname",
-                  crossDomain : true,
-                  success: function (tvShow) {
-                    // runtime shows min max time / divide
-                    // var runtime = tvShow.episode_run_time.reduce(function(a, b) { return a + b; }, 0) / tvShow.episode_run_time.length
+      makeAjaxCall("GET", showSearchUrl, function(result) {
+        $.each(result, function (i, shows) {
+          $.each(shows, function(i, show) {
+            if (i < 2) {
+              var showDetailsUrl = 'https://api.themoviedb.org/3/tv/' + show.id + '?api_key=' + API_KEY;
 
-                    // write everything in an array
-                    if (tvShow.number_of_seasons == null) {
-                      data.results.push({id: tvShow.id, text: tvShow.original_name, runtime: tvShow.episode_run_time[0], poster: tvShow.poster_path, bg: tvShow.backdrop_path, seasons: 1, episodes: tvShow.number_of_episodes });
-                    } else {
-                      data.results.push({id: tvShow.id, text: tvShow.original_name, runtime: tvShow.episode_run_time[0], poster: tvShow.poster_path, bg: tvShow.backdrop_path, seasons: tvShow.number_of_seasons, episodes: tvShow.number_of_episodes });
+              makeAjaxCall("GET", showDetailsUrl, function(tvShow) {
+                var seasons = tvShow.number_of_seasons != null ? tvShow.number_of_seasons : 1;
+                data.results.push({
+                  id: tvShow.id,
+                  text: tvShow.original_name,
+                  runtime: tvShow.episode_run_time[0],
+                  poster: tvShow.poster_path,
+                  bg: tvShow.backdrop_path,
+                  seasons: seasons,
+                  episodes: tvShow.number_of_episodes
+                });
+
+                if (tvShow.episode_run_time[0] == null) {
+                  var showEpisodesUrl = 'https://api.themoviedb.org/3/tv/' + show.id + '/season/1?api_key=' + API_KEY;
+
+                  makeAjaxCall("GET", showEpisodesUrl, function(showEpisodes) {
+                    var totalRuntime = 0, episodeCount = 0, averageRuntime = 0;
+
+                    for (var i = 0; i < showEpisodes.episodes.length; i++) {
+                      var episode = showEpisodes.episodes[i];
+                      if (episode.hasOwnProperty("runtime")) {
+                        totalRuntime += episode.runtime;
+                        episodeCount++;
+                      }
                     }
 
-                    // TMDb changing policy and not giving average runtime. Get 1st season and loop through every episode runtime and calculate average
-                    if (tvShow.episode_run_time[0] == null) {
-                      $.ajax ({
-                        type: "GET",
-                        url: 'https://api.themoviedb.org/3/tv/' + show.id + '/season/1?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
-                        dataType: "jsonp",
-                        json: "callbackname",
-                        crossDomain : true,
-                        success: function (showEpisodes) {
-                          var totalRuntime = 0,
-                              episodeCount = 0,
-                              averageRuntime = 0;
+                    averageRuntime = episodeCount > 0 ? totalRuntime / episodeCount : 0;
+                    averageRuntime = Math.floor(averageRuntime);
 
-                          // Loop through the episodes array
-                          for (var i = 0; i < showEpisodes.episodes.length; i++) {
-                            var episode = showEpisodes.episodes[i];
-                            // Check if the episode has a "runtime" property
-                            if (episode.hasOwnProperty("runtime")) {
-                              totalRuntime += episode.runtime;
-                              episodeCount++;
-                            }
-                          }
-                          averageRuntime = episodeCount > 0 ? totalRuntime / episodeCount : 0;
-                          averageRuntime = Math.floor(averageRuntime);
-
-                          // Find the correct element in the data.results array and update the runtime
-                          for (var j = 0; j < data.results.length; j++) {
-                            if (data.results[j].id === tvShow.id) {
-                              data.results[j].runtime = averageRuntime;
-                              break; // Stop looping once you've found the matching show
-                            }
-                          }
-                        }
-                      })
+                    for (var j = 0; j < data.results.length; j++) {
+                      if (data.results[j].id === tvShow.id) {
+                        data.results[j].runtime = averageRuntime;
+                        break;
+                      }
                     }
+                  })
+                }
 
-                    selectedTVshow = tvShow.original_name;
-                    results = data.results;
-
-                    // return array
-                    query.callback(data);
-                  }
-                })
-              }
-            })
+                query.callback(data);
+              })
+            }
           })
-        },
-        error: function (data) {
-          // console.log('error');
-        }
-      })
+        })
+      });
+
     }, 1000 );
   }
-})
-
-
-
+});
 
 
 // flag that goes true once user has selected a show (used in showing the submit button)
