@@ -29,7 +29,6 @@ $(".tvshow").select2({
       $.ajax ({
         type: "GET",
         url: 'https://api.themoviedb.org/3/search/tv?api_key=d56e51fb77b081a9cb5192eaaa7823ad&query=' + value,
-        // url: 'data.json',
         dataType: "jsonp",
         json: "callbackname",
         crossDomain : true,
@@ -40,7 +39,6 @@ $(".tvshow").select2({
                 $.ajax ({
                   type: "GET",
                   url: 'https://api.themoviedb.org/3/tv/' + show.id + '?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
-                  // url: 'data.json',
                   dataType: "jsonp",
                   json: "callbackname",
                   crossDomain : true,
@@ -53,6 +51,42 @@ $(".tvshow").select2({
                       data.results.push({id: tvShow.id, text: tvShow.original_name, runtime: tvShow.episode_run_time[0], poster: tvShow.poster_path, bg: tvShow.backdrop_path, seasons: 1, episodes: tvShow.number_of_episodes });
                     } else {
                       data.results.push({id: tvShow.id, text: tvShow.original_name, runtime: tvShow.episode_run_time[0], poster: tvShow.poster_path, bg: tvShow.backdrop_path, seasons: tvShow.number_of_seasons, episodes: tvShow.number_of_episodes });
+                    }
+
+                    // TMDb changing policy and not giving average runtime. Get 1st season and loop through every episode runtime and calculate average
+                    if (tvShow.episode_run_time[0] == null) {
+                      $.ajax ({
+                        type: "GET",
+                        url: 'https://api.themoviedb.org/3/tv/' + show.id + '/season/1?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
+                        dataType: "jsonp",
+                        json: "callbackname",
+                        crossDomain : true,
+                        success: function (showEpisodes) {
+                          var totalRuntime = 0,
+                              episodeCount = 0,
+                              averageRuntime = 0;
+
+                          // Loop through the episodes array
+                          for (var i = 0; i < showEpisodes.episodes.length; i++) {
+                            var episode = showEpisodes.episodes[i];
+                            // Check if the episode has a "runtime" property
+                            if (episode.hasOwnProperty("runtime")) {
+                              totalRuntime += episode.runtime;
+                              episodeCount++;
+                            }
+                          }
+                          averageRuntime = episodeCount > 0 ? totalRuntime / episodeCount : 0;
+                          averageRuntime = Math.floor(averageRuntime);
+
+                          // Find the correct element in the data.results array and update the runtime
+                          for (var j = 0; j < data.results.length; j++) {
+                            if (data.results[j].id === tvShow.id) {
+                              data.results[j].runtime = averageRuntime;
+                              break; // Stop looping once you've found the matching show
+                            }
+                          }
+                        }
+                      })
                     }
 
                     selectedTVshow = tvShow.original_name;
@@ -90,7 +124,6 @@ var totalSeasons = 0,
 $('.tvshow').change(function() {
   selectedTVshow = jQuery.parseJSON(JSON.stringify($('.tvshow').select2('data')));
   console.log(selectedTVshow);
-
 
   // removes TV shows that were appended (selected from dropdown) but eventually not added (submitted)
   $('.show-to-add').remove();
@@ -151,7 +184,7 @@ $('.tvshow').change(function() {
         // if poster is empty, show default placeholder
         var poster = null;
         if (selectedTVshow[0].poster == null) {
-          poster = 'https://slurm.trakt.us/images/poster-dark.jpg';
+          poster = '../images/126.42.jpg';
         } else {
           poster = 'https://image.tmdb.org/t/p/w342' + selectedTVshow[0].poster;
         }

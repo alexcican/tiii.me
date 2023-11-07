@@ -75,7 +75,8 @@ setTimeout(function() {
 
 
 // show witty console message
-console.log('Yo!\nThis app was created by Alex Cican: https://alexcican.com\nQuestions? alex@alexcican.com');
+console.log('Yo!\nThis app was created by Alex Cican: http://alexcican.com\nQuestions? alex@alexcican.com');
+
 /*
 Copyright 2012 Igor Vaynberg
 
@@ -88,8 +89,8 @@ License or the GPL License.
 
 You may obtain a copy of the Apache License and the GPL License at:
 
-    https://www.apache.org/licenses/LICENSE-2.0
-    https://www.gnu.org/licenses/gpl-2.0.html
+    http://www.apache.org/licenses/LICENSE-2.0
+    http://www.gnu.org/licenses/gpl-2.0.html
 
 Unless required by applicable law or agreed to in writing, software distributed under the
 Apache License or the GPL Licesnse is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -3469,7 +3470,6 @@ $(".tvshow").select2({
       $.ajax ({
         type: "GET",
         url: 'https://api.themoviedb.org/3/search/tv?api_key=d56e51fb77b081a9cb5192eaaa7823ad&query=' + value,
-        // url: 'data.json',
         dataType: "jsonp",
         json: "callbackname",
         crossDomain : true,
@@ -3480,7 +3480,6 @@ $(".tvshow").select2({
                 $.ajax ({
                   type: "GET",
                   url: 'https://api.themoviedb.org/3/tv/' + show.id + '?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
-                  // url: 'data.json',
                   dataType: "jsonp",
                   json: "callbackname",
                   crossDomain : true,
@@ -3493,6 +3492,42 @@ $(".tvshow").select2({
                       data.results.push({id: tvShow.id, text: tvShow.original_name, runtime: tvShow.episode_run_time[0], poster: tvShow.poster_path, bg: tvShow.backdrop_path, seasons: 1, episodes: tvShow.number_of_episodes });
                     } else {
                       data.results.push({id: tvShow.id, text: tvShow.original_name, runtime: tvShow.episode_run_time[0], poster: tvShow.poster_path, bg: tvShow.backdrop_path, seasons: tvShow.number_of_seasons, episodes: tvShow.number_of_episodes });
+                    }
+
+                    // TMDb changing policy and not giving average runtime. Get 1st season and loop through every episode runtime and calculate average
+                    if (tvShow.episode_run_time[0] == null) {
+                      $.ajax ({
+                        type: "GET",
+                        url: 'https://api.themoviedb.org/3/tv/' + show.id + '/season/1?api_key=d56e51fb77b081a9cb5192eaaa7823ad',
+                        dataType: "jsonp",
+                        json: "callbackname",
+                        crossDomain : true,
+                        success: function (showEpisodes) {
+                          var totalRuntime = 0,
+                              episodeCount = 0,
+                              averageRuntime = 0;
+
+                          // Loop through the episodes array
+                          for (var i = 0; i < showEpisodes.episodes.length; i++) {
+                            var episode = showEpisodes.episodes[i];
+                            // Check if the episode has a "runtime" property
+                            if (episode.hasOwnProperty("runtime")) {
+                              totalRuntime += episode.runtime;
+                              episodeCount++;
+                            }
+                          }
+                          averageRuntime = episodeCount > 0 ? totalRuntime / episodeCount : 0;
+                          averageRuntime = Math.floor(averageRuntime);
+
+                          // Find the correct element in the data.results array and update the runtime
+                          for (var j = 0; j < data.results.length; j++) {
+                            if (data.results[j].id === tvShow.id) {
+                              data.results[j].runtime = averageRuntime;
+                              break; // Stop looping once you've found the matching show
+                            }
+                          }
+                        }
+                      })
                     }
 
                     selectedTVshow = tvShow.original_name;
@@ -3530,7 +3565,6 @@ var totalSeasons = 0,
 $('.tvshow').change(function() {
   selectedTVshow = jQuery.parseJSON(JSON.stringify($('.tvshow').select2('data')));
   console.log(selectedTVshow);
-
 
   // removes TV shows that were appended (selected from dropdown) but eventually not added (submitted)
   $('.show-to-add').remove();
@@ -3591,7 +3625,7 @@ $('.tvshow').change(function() {
         // if poster is empty, show default placeholder
         var poster = null;
         if (selectedTVshow[0].poster == null) {
-          poster = 'https://slurm.trakt.us/images/poster-dark.jpg';
+          poster = '../images/126.42.jpg';
         } else {
           poster = 'https://image.tmdb.org/t/p/w342' + selectedTVshow[0].poster;
         }
@@ -3693,6 +3727,7 @@ function removeNoScroll() {
   // removes posters blurry so that dropdown is easier to read
   $('.container__list-of-shows').children().removeClass('blur-and-reduce-opacity');
 }
+
 // WHAT HAPPENS WHEN YOU CLICK ON STUFF
 
 // timewasted in minutes
@@ -3975,6 +4010,7 @@ $('.reset-local-storage').on('click touchstart', function() {
   reset();
   return false;
 })
+
 // COUNT TIME WASTED
 function countUp(a,b,c,d,e,f){this.options=f||{useEasing:!0,useGrouping:!0,separator:",",decimal:"."};for(var g=0,h=["webkit","moz","ms"],i=0;i<h.length&&!window.requestAnimationFrame;++i)window.requestAnimationFrame=window[h[i]+"RequestAnimationFrame"],window.cancelAnimationFrame=window[h[i]+"CancelAnimationFrame"]||window[h[i]+"CancelRequestAnimationFrame"];window.requestAnimationFrame||(window.requestAnimationFrame=function(a){var c=(new Date).getTime(),d=Math.max(0,16-(c-g)),e=window.setTimeout(function(){a(c+d)},d);return g=c+d,e}),window.cancelAnimationFrame||(window.cancelAnimationFrame=function(a){clearTimeout(a)});var j=this;this.d="string"==typeof a?document.getElementById(a):a,this.startVal=Number(b),this.endVal=Number(c),this.countDown=this.startVal>this.endVal?!0:!1,this.startTime=null,this.timestamp=null,this.remaining=null,this.frameVal=this.startVal,this.rAF=null,this.decimals=Math.max(0,d||0),this.dec=Math.pow(10,this.decimals),this.duration=1e3*e||2e3,this.easeOutExpo=function(a,b,c,d){return 1024*c*(-Math.pow(2,-10*a/d)+1)/1023+b},this.count=function(a){null===j.startTime&&(j.startTime=a),j.timestamp=a;var b=a-j.startTime;if(j.remaining=j.duration-b,j.options.useEasing)if(j.countDown){var c=j.easeOutExpo(b,0,j.startVal-j.endVal,j.duration);j.frameVal=j.startVal-c}else j.frameVal=j.easeOutExpo(b,j.startVal,j.endVal-j.startVal,j.duration);else if(j.countDown){var c=(j.startVal-j.endVal)*(b/j.duration);j.frameVal=j.startVal-c}else j.frameVal=j.startVal+(j.endVal-j.startVal)*(b/j.duration);j.frameVal=Math.round(j.frameVal*j.dec)/j.dec,j.frameVal=j.countDown?j.frameVal<j.endVal?j.endVal:j.frameVal:j.frameVal>j.endVal?j.endVal:j.frameVal,j.d.innerHTML=j.formatNumber(j.frameVal.toFixed(j.decimals)),b<j.duration?j.rAF=requestAnimationFrame(j.count):null!=j.callback&&j.callback()},this.start=function(a){return j.callback=a,isNaN(j.endVal)||isNaN(j.startVal)?(console.log("countUp error: startVal or endVal is not a number"),j.d.innerHTML="--"):j.rAF=requestAnimationFrame(j.count),!1},this.stop=function(){cancelAnimationFrame(j.rAF)},this.reset=function(){j.startTime=null,cancelAnimationFrame(j.rAF),j.d.innerHTML=j.formatNumber(j.startVal.toFixed(j.decimals))},this.resume=function(){j.startTime=null,j.duration=j.remaining,j.startVal=j.frameVal,requestAnimationFrame(j.count)},this.formatNumber=function(a){a+="";var b,c,d,e;if(b=a.split("."),c=b[0],d=b.length>1?j.options.decimal+b[1]:"",e=/(\d+)(\d{3})/,j.options.useGrouping)for(;e.test(c);)c=c.replace(e,"$1"+j.options.separator+"$2");return c+d},j.d.innerHTML=j.formatNumber(j.startVal.toFixed(j.decimals))}
 // REMOVING SHOW FUNCTIONS
