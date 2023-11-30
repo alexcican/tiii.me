@@ -1,0 +1,14 @@
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: AmazonBot
+User-agent: FacebookBot
+User-agent: Claude-Web
+User-agent: Omgilibot
+User-agent: anthropic-ai
+User-agent: cohere-ai
+Disallow: /
+User-agent: *
+Disallow: 
+Allow: /
