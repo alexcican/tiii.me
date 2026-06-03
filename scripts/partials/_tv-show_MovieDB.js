@@ -22,11 +22,10 @@ function makeAjaxCall(type, url, callback) {
   return $.ajax({
     type: type,
     url: url,
-    dataType: "jsonp",
-    json: "callbackname",
-    crossDomain : true,
+    dataType: "json",
+    crossDomain: true,
     success: callback,
-    error: function(data) {
+    error: function() {
       console.log('An error occurred.');
     }
   });
@@ -45,9 +44,8 @@ $(".tvshow").select2({
       var showSearchUrl = 'https://api.themoviedb.org/3/search/tv?api_key=' + API_KEY + '&query=' + value;
 
       makeAjaxCall("GET", showSearchUrl, function(result) {
-        $.each(result, function (i, shows) {
-          $.each(shows, function(i, show) {
-            if (i < 2) {
+        $.each((result.results || []).slice(0, 5), function(i, show) {
+            if (i < 5) {
               var showDetailsUrl = 'https://api.themoviedb.org/3/tv/' + show.id + '?api_key=' + API_KEY;
 
               makeAjaxCall("GET", showDetailsUrl, function(tvShow) {
@@ -91,8 +89,7 @@ $(".tvshow").select2({
                 query.callback(data);
               })
             }
-          })
-        })
+        });
       });
 
     }, 1000 );
